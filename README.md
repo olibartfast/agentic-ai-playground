@@ -1,6 +1,6 @@
 # AI Code Assistant Playground
 
-This repository serves as a personal playground and testbed for evaluating and comparing various AI-powered code assistants. The goal is to understand their strengths, weaknesses, usability, and performance across different programming languages and common development tasks, covering **both cloud-based services and locally hosted models**.
+This repository serves as playground and testbed for evaluating and comparing various AI-powered code assistants. 
 
 ## Table of Contents
 
@@ -13,8 +13,6 @@ This repository serves as a personal playground and testbed for evaluating and c
   
 
 ## Purpose
-
-With the rapid evolution of AI in software development, numerous code assistants are available. This repository aims to provide a structured environment to:
 
 *   Experiment with different AI coding tools (IDE extensions, plugins) hands-on.
 *   Evaluate and compare cloud-based assistants (like GitHub Copilot) and assistants capable of using **locally hosted models** (like Continue.dev).
@@ -64,9 +62,7 @@ A major part of this playground involves testing models run **locally** on perso
 *   **llama.cpp:** [GitHub](https://github.com/ggerganov/llama.cpp)
     *   **Type:** Core C++ Library & CLI
     *   **Description:** Foundational engine for efficient inference (GGUF models), especially on CPU/Apple Silicon. Used by many other tools. Can run a basic server directly.
-*   **Hugging Face Libraries (`transformers`, etc.):** [huggingface.co](https://huggingface.co/)
-    *   **Type:** Python Libraries
-    *   **Description:** Direct use of Python libraries for maximum control over model loading and inference. Requires coding and often wrapping in a custom API server (e.g., using FastAPI/Flask) for IDE integration.
+
 
 **Local Models Tested:**
 *   *(List specific models you are testing locally, e.g., `codellama:7b-instruct-gguf`, `starcoder2:3b`, `deepseek-coder:6.7b-base`, `Mistral-7B-Instruct-v0.2.Q5_K_M.gguf`)*
