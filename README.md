@@ -28,7 +28,7 @@ With the rapid evolution of AI in software development, numerous code assistants
 This section lists the primary AI code assistant tools (often IDE extensions or plugins) being evaluated. These are the interfaces used for interacting with the AI, whether the backend is cloud-based or local.
 
 *   ✅ **Continue.dev:** [Website](https://continue.dev/) / [GitHub](https://github.com/continuedev/continue) - *Key tool for easily connecting to various local backends.*
-*   ✅ **Codeium:** [Website](https://codeium.com/) - *Primarily cloud-based.*
+*   ✅ **Windsurf(formerly Codeium):** [Website](https://codeium.com/) - *Primarily cloud-based.*
 *   🔄 **GitHub Copilot:** [Website](https://github.com/features/copilot) - *Cloud-based (OpenAI models).*
 *   🔄 **Tabnine:** [Website](https://www.tabnine.com/) - *Offers both cloud and local (self-hosted) options.*
 *   🔄 **Amazon Q Developer (CodeWhisperer):** [Website](https://aws.amazon.com/q/developer/) - *Cloud-based (AWS models).*
