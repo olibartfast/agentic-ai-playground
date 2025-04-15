@@ -52,7 +52,7 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 
 ## Repository Structure
 ```
-/
+...
 │
 ├── windsurf/            # Tests and notes for Codeium (Cloud)
 │   └── notes.md
@@ -69,6 +69,7 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 └── (other_assistant_or_backend_folders...)/
     ├── ...
     └── notes.md
+...
 ```
 
 ## Testing workflow
