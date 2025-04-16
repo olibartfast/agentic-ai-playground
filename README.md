@@ -12,8 +12,6 @@ This repository serves as a playground and testbed for evaluating and comparing 
 
 ## Purpose
 
-The primary goals of this repository are:
-
 *   Experiment with different AI coding tools (IDE extensions, plugins) hands-on.
 *   Evaluate and compare cloud-based assistants (like GitHub Copilot) and assistants capable of using **locally hosted models** (like Continue.dev).
 *   Assess the setup, management, and performance of various **local LLM runners** (Ollama, LM Studio, etc.).
@@ -21,7 +19,7 @@ The primary goals of this repository are:
 *   Evaluate features like code completion, generation, refactoring, debugging, and explanation across different setups.
 *   Document setup processes, configurations, hardware requirements (for local models), and personal observations.
 
-## Assistants (Front-Ends)
+## Assistants (Front-Ends, tentative list)
 
 This section lists the primary AI code assistant tools (often IDE extensions or plugins) being evaluated. These are the interfaces used for interacting with the AI, whether the backend is cloud-based or local.
 
@@ -39,9 +37,7 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 *   🔄 = In Progress / Setting up
 *   📝 = Planned / To Do
 
-## Local Model Backends & Setups
-
-The following are local model backends and setups being evaluated:
+## Local Model Backends & Setups (tentative list)
 
 *   **Ollama:** [ollama.com](https://ollama.com/)
 *   **LM Studio:** [lmstudio.ai](https://lmstudio.ai/)
@@ -51,11 +47,9 @@ The following are local model backends and setups being evaluated:
 *   **aider:** [GitHub](https://github.com/Aider-AI/aider)
 
 **Local Models Tested:**
-*   *(specific models locally tested, e.g., `codestral`, `codellama:7b-instruct-gguf`, `starcoder2:3b`, `deepseek-coder:6.7b-base`, `Mistral-7B-Instruct-v0.2.Q5_K_M.gguf`...)*
+*   (specific models locally tested, e.g., `codestral`, `codellama`, `deepseek-coder`...)*
 
-## Repository Structure
-
-The planned repository structure is as follows:
+## (Planned) Repository Structure
 ```
 ...
 │
@@ -77,9 +71,7 @@ The planned repository structure is as follows:
 ...
 ```
 
-## Testing Workflow
-
-The planned testing workflow includes:
+## (Planned) Testing Workflow
 
 *   **Setup & Configuration:** Ease of installing assistants and setting up local backends (Ollama, LM Studio, etc.).
 *   **Resource Usage:** Monitoring CPU, RAM, and VRAM consumption for local models.
