@@ -1,6 +1,4 @@
-Here's your installation and setup guide for Ollama with proper Markdown formatting:
 
-```markdown
 # Install Ollama
 
 Download and install from [https://ollama.com/download](https://ollama.com/download):
@@ -47,6 +45,5 @@ models:
   - name: Codestral Ollama
     provider: ollama
     model: codestral:22b
-```
 ```
 
