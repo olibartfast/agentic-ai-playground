@@ -1,6 +1,6 @@
 # AI Code Assistant Playground
 
-This repository serves as playground and testbed for evaluating and comparing various AI-powered code assistants. 
+This repository serves as a playground and testbed for evaluating and comparing various AI-powered code assistants.
 
 ## Table of Contents
 
@@ -9,8 +9,10 @@ This repository serves as playground and testbed for evaluating and comparing va
 *   [Local Model Backends & Setups](#local-model-backends--setups)
 *   [Repository Structure](#repository-structure)
 *   [Testing Workflow](#testing-workflow)
-  
+
 ## Purpose
+
+The primary goals of this repository are:
 
 *   Experiment with different AI coding tools (IDE extensions, plugins) hands-on.
 *   Evaluate and compare cloud-based assistants (like GitHub Copilot) and assistants capable of using **locally hosted models** (like Continue.dev).
@@ -23,22 +25,24 @@ This repository serves as playground and testbed for evaluating and comparing va
 
 This section lists the primary AI code assistant tools (often IDE extensions or plugins) being evaluated. These are the interfaces used for interacting with the AI, whether the backend is cloud-based or local.
 
-*   ✅ **Continue.dev:** [Website](https://continue.dev/) / [GitHub](https://github.com/continuedev/continue) - *Key tool for easily connecting to various local backends.*
-*   ✅ **Windsurf(formerly Codeium):** [Website](https://codeium.com/) - *Primarily cloud-based.*
-*   🔄 **GitHub Copilot:** [Website](https://github.com/features/copilot) - *Cloud-based (OpenAI models).*
-*   📝 **Tabnine:** [Website](https://www.tabnine.com/) - *Offers both cloud and local (self-hosted) options.*
-*   📝 **Amazon Q Developer (CodeWhisperer):** [Website](https://aws.amazon.com/q/developer/) - *Cloud-based (AWS models).*
-*   📝 **Cody (Sourcegraph):** [Website](https://sourcegraph.com/cody) - *Cloud-based, context-aware.*
-*   📝 **Cursor:** [Website](https://cursor.sh/) - *AI-first IDE (cloud models).*
-*   📝 **Pieces for Developers:** [Website](https://pieces.app/) - *Offers local processing options.*
-*   *(any other new discovered front-end tools to test)*
+*   🔄 **Continue.dev:** [Website](https://continue.dev/) / [GitHub](https://github.com/continuedev/continue) 
+*   🔄  **Windsurf (formerly Codeium):** [Website](https://codeium.com/) 
+*   🔄 **GitHub Copilot:** [Website](https://github.com/features/copilot) 
+*   📝 **Tabnine:** [Website](https://www.tabnine.com/) 
+*   📝 **Amazon Q Developer (CodeWhisperer):** [Website](https://aws.amazon.com/q/developer/) 
+*   📝 **Cody (Sourcegraph):** [Website](https://sourcegraph.com/cody) 
+*   📝 **Cursor:** [Website](https://cursor.sh/) 
+*   📝 **Pieces for Developers:** [Website](https://pieces.app/)
 
 **Legend:**
 *   ✅ = Actively Testing / Tested
-*   🔄 = In Progress / Setting Up
+*   🔄 = In Progress / Setting up
 *   📝 = Planned / To Do
 
 ## Local Model Backends & Setups
+
+The following are local model backends and setups being evaluated:
+
 *   **Ollama:** [ollama.com](https://ollama.com/)
 *   **LM Studio:** [lmstudio.ai](https://lmstudio.ai/)
 *   **GPT4All:** [gpt4all.io](https://gpt4all.io/)
@@ -46,11 +50,12 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 *   **llama.cpp:** [GitHub](https://github.com/ggerganov/llama.cpp)
 *   **aider:** [GitHub](https://github.com/Aider-AI/aider)
 
-
 **Local Models Tested:**
-*   *(specific models locally tested, e.g., `codestral`, `codellama:7b-instruct-gguf`, `starcoder2:3b`, `deepseek-coder:6.7b-base`, `Mistral-7B-Instruct-v0.2.Q5_K_M.gguf`)*
+*   *(specific models locally tested, e.g., `codestral`, `codellama:7b-instruct-gguf`, `starcoder2:3b`, `deepseek-coder:6.7b-base`, `Mistral-7B-Instruct-v0.2.Q5_K_M.gguf`...)*
 
 ## Repository Structure
+
+The planned repository structure is as follows:
 ```
 ...
 │
@@ -72,7 +77,9 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 ...
 ```
 
-## Testing workflow
+## Testing Workflow
+
+The planned testing workflow includes:
 
 *   **Setup & Configuration:** Ease of installing assistants and setting up local backends (Ollama, LM Studio, etc.).
 *   **Resource Usage:** Monitoring CPU, RAM, and VRAM consumption for local models.
