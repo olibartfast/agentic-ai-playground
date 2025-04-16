@@ -47,7 +47,7 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 *   **aider:** [GitHub](https://github.com/Aider-AI/aider)
 
 **Local Models Tested:**
-*   (specific models locally tested, e.g., `codestral`, `codellama`, `deepseek-coder`...)*
+*   (specific models locally tested, e.g., `codestral`, `codellama`, `deepseek-coder`...)
 
 ## (Planned) Repository Structure
 ```
