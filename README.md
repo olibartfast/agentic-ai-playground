@@ -10,7 +10,7 @@ This repository serves as a playground and testing ground for evaluating and com
 - **Document** configurations, hardware requirements, and observations to guide developers in selecting tools.
 - **Explore** AI agents in coding, such as autonomous task execution and multi-tool integration, to highlight their role in modern workflows.
 
-## Assistants (Front-Ends, tentative list)
+## Assistants & Agents (Front-Ends, tentative list)
 
 This section lists the primary AI code assistant tools (often IDE extensions or plugins) being evaluated. These are the interfaces used for interacting with the AI, whether the backend is cloud-based or local.
 
