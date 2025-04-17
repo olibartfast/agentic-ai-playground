@@ -84,5 +84,5 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 
 ## References
 ### Agents 
-https://github.com/microsoft/ai-agents-for-beginners
-https://huggingface.co/learn/agents-course/en/unit0/introduction
+* https://github.com/microsoft/ai-agents-for-beginners
+* https://huggingface.co/learn/agents-course/en/unit0/introduction
