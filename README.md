@@ -40,8 +40,10 @@ These are the platforms used to run local LLMs, enabling privacy-focused or offl
 | **Jan** |  Local AI platform for coding and chat. | [jan.ai](https://jan.ai/) |
 | **llama.cpp** |High-performance LLM inference engine. | [GitHub](https://github.com/ggerganov/llama.cpp) |
 
-**Local Models Tested:**
-*   (specific models locally tested, e.g., `codestral`, `codellama`, `deepseek-coder`...)
+**Local Models Tested (Examples):**  
+- `codestral`  
+- `codellama` 
+- `deepseek-coder`
 
 ## (Planned) Repository Structure
 ```
