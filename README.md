@@ -12,7 +12,7 @@ This repository serves as a playground and testing ground for evaluating and com
 
 ## Assistants & Agents (Front-Ends, tentative list)
 
-This section lists the primary AI code assistant tools (often IDE extensions or plugins) being evaluated. These are the interfaces used for interacting with the AI, whether the backend is cloud-based or local.
+This section lists the AI code assistants and agents under evaluation, categorized by their interface (IDE plugins, CLI tools, or standalone agents). Assistants provide suggestions or completions, while agents can autonomously execute multi-step tasks.
 
 | Tool | Type | Description | Links |
 |------|------|-------------|-------|
