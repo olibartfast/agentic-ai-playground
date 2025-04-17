@@ -81,3 +81,8 @@ This section lists the primary AI code assistant tools (often IDE extensions or 
 *   **Refactoring & Debugging:** Usefulness of suggestions for improving or fixing code.
 *   **Chat & Explanation:** Quality of interaction for explaining code or answering questions.
 *   **Context Awareness:** How well the assistant uses project context (especially relevant for local models with limited context windows vs tools like Cody/Copilot).
+
+## References
+### Agents 
+https://github.com/microsoft/ai-agents-for-beginners
+https://huggingface.co/learn/agents-course/en/unit0/introduction
