@@ -18,13 +18,13 @@ This section lists the AI code assistants and agents under evaluation, categoriz
 |------|------|-------------|-------|
 | **Continue.dev** | IDE Plugin | Open-source IDE extension for local and cloud models. | [Website](https://continue.dev/), [GitHub](https://github.com/continuedev/continue) |
 | **GitHub Copilot** | IDE Plugin | Cloud-based assistant for code completion and chat. | [Website](https://github.com/features/copilot) |
-| **Windsurf (Codeium)** | IDE Plugin | Cloud/local hybrid for code suggestions. | [Website](https://codeium.com/) |
+| **Windsurf (formerly Codeium)** | IDE Plugin | Cloud/local hybrid for code suggestions. | [Website](https://codeium.com/) |
 | **Tabnine** | IDE Plugin | AI-powered completion with local model support. | [Website](https://www.tabnine.com/) |
 | **Amazon Q Developer** | IDE Plugin | AWS’s assistant for coding and debugging. | [Website](https://aws.amazon.com/q/developer/) |
 | **Cody (Sourcegraph)** | IDE Plugin | Context-aware assistant for project-wide coding. | [Website](https://sourcegraph.com/cody) |
 | **Cursor** | IDE | AI-native IDE with advanced code generation. | [Website](https://cursor.sh/) |
 | **aider** | CLI Agent | Autonomous coding agent for editing codebases. | [GitHub](https://github.com/Aider-AI/aider) |
-| **OpenDevin** | Agent | Open-source agent for software development tasks. | [GitHub](https://github.com/OpenDevin/OpenDevin) |
+| **OpenHands (formerly OpenDevin)** | Agent | Open-source agent for software development tasks. | [GitHub](https://github.com/All-Hands-AI/OpenHands) |
 
 **Note on Agents:**  
 AI agents like aider and OpenDevin differ from traditional assistants by autonomously handling multi-step tasks (e.g., scaffolding a project, refactoring a codebase). These are evaluated for their ability to execute complex workflows, integrate with tools (e.g., Git, Docker), and manage multi-file contexts.
