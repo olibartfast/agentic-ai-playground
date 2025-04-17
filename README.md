@@ -1,6 +1,6 @@
 # AI Code Assistant Playground
 
-This repository serves as a playground and testbed for evaluating and comparing various AI-powered code assistants.
+This repository serves as a playground and testing ground for evaluating and comparing various AI-powered code assistants.
 
 ## Purpose
 
