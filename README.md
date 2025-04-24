@@ -86,7 +86,8 @@ These are the platforms used to run local LLMs, enabling privacy-focused or offl
 
 ### AI Agents
 - [Microsoft AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners): Intro to agent concepts.  
-- [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/en/unit0/introduction): Practical agent workflows.  
+- [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/en/unit0/introduction): Practical agent workflows.
+- [Building Code Agents with Hugging Face smolagents](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents): How to build your own code agents using smolagents from Hugging Face.
 - [AutoGen](https://github.com/microsoft/autogen): Multi-agent collaboration for coding.  
 - [CrewAI](https://github.com/joaomdmoura/crewAI): Task-driven agent framework.  
 - [LangChain Agents](https://python.langchain.com/docs/modules/agents/): Custom agents for coding tasks.
