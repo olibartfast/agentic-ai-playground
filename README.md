@@ -5,89 +5,120 @@ This repository serves as a playground and testing ground for evaluating and com
 ## Purpose
 
 - **Experiment** with AI coding tools, including IDE extensions, CLI-based assistants, and autonomous agents.
-- **Compare** cloud-based assistants (e.g., GitHub Copilot) with locally hosted models (e.g., via Ollama) and agent-based tools (e.g., aider).
+- **Compare** cloud-based assistants (e.g., GitHub Copilot, Google AI Studio) with locally hosted models (e.g., via Ollama, Hugging Face Transformers) and agent-based tools (e.g., aider, SmolAgents).
 - **Evaluate** setup complexity, resource usage, code quality, and feature sets (e.g., completion, refactoring, task automation).
 - **Document** configurations, hardware requirements, and observations to guide developers in selecting tools.
 - **Explore** AI agents in coding, such as autonomous task execution and multi-tool integration, to highlight their role in modern workflows.
 
-## Assistants & Agents (Front-Ends, tentative list)
+## Assistants & Agents (Front-Ends)
 
 This section lists the AI code assistants and agents under evaluation, categorized by their interface (IDE plugins, CLI tools, or standalone agents). Assistants provide suggestions or completions, while agents can autonomously execute multi-step tasks.
 
 | Tool | Type | Description | Links |
 |------|------|-------------|-------|
-| **Continue.dev** | IDE Plugin | Open-source IDE extension for local and cloud models. | [Website](https://continue.dev/), [GitHub](https://github.com/continuedev/continue) |
-| **GitHub Copilot** | IDE Plugin | Cloud-based assistant for code completion and chat. | [Website](https://github.com/features/copilot) |
-| **Windsurf (formerly Codeium)** | IDE Plugin | Cloud/local hybrid for code suggestions. | [Website](https://codeium.com/) |
-| **Tabnine** | IDE Plugin | AI-powered completion with local model support. | [Website](https://www.tabnine.com/) |
-| **Amazon Q Developer** | IDE Plugin | AWS’s assistant for coding and debugging. | [Website](https://aws.amazon.com/q/developer/) |
-| **Cody (Sourcegraph)** | IDE Plugin | Context-aware assistant for project-wide coding. | [Website](https://sourcegraph.com/cody) |
-| **Cursor** | IDE | AI-native IDE with advanced code generation. | [Website](https://cursor.sh/) |
-| **aider** | CLI Agent | Autonomous coding agent for editing codebases. | [GitHub](https://github.com/Aider-AI/aider) |
-| **OpenHands (formerly OpenDevin)** | Agent | Open-source agent for software development tasks. | [GitHub](https://github.com/All-Hands-AI/OpenHands) |
+| **Continue.dev** | IDE Plugin | Open-source IDE extension for local and cloud models, supporting VS Code and JetBrains. | [Website](https://continue.dev/), [GitHub](https://github.com/continuedev/continue) |
+| **GitHub Copilot** | IDE Plugin | Cloud-based assistant with enhanced context awareness and multi-language support. | [Website](https://github.com/features/copilot) |
+| **Codeium** | IDE Plugin | Cloud/local hybrid for code suggestions, with improved local model support. | [Website](https://codeium.com/) |
+| **Tabnine** | IDE Plugin | AI-powered completion with local and cloud model options, emphasizing privacy. | [Website](https://www.tabnine.com/) |
+| **Amazon Q Developer** | IDE Plugin | AWS’s assistant for coding, debugging, and cloud integration. | [Website](https://aws.amazon.com/q/developer/) |
+| **Cody (Sourcegraph)** | IDE Plugin | Context-aware assistant leveraging project-wide codebases for precise suggestions. | [Website](https://sourcegraph.com/cody) |
+| **Cursor** | IDE | AI-native IDE with advanced code generation and real-time collaboration features. | [Website](https://cursor.sh/) |
+| **Refact.ai** | IDE Plugin/CLI | Open-source assistant for code completion, refactoring, and automation, with self-hosted options. Supports 25+ languages and integrates with VS Code/JetBrains. | [Website](https://refact.ai/), [GitHub](https://github.com/smallcloudai/refact) |
+| **DeepSeek Coder** | IDE Plugin/API | AI assistant leveraging DeepSeek’s code-focused models for completion and generation, with API and local model support. | [Website](https://coder.deepseek.com/), [GitHub](https://github.com/deepseek-ai) |
+| **Google AI Studio** | Browser-Based IDE | Cloud-based IDE for prototyping with Gemini models, supporting code generation, completion, and multimodal inputs. | [Website](https://aistudio.google.com/), [Gemini API Docs](https://ai.google.dev/) |
+| **SmolAgents (Hugging Face)** | CLI Agent | Lightweight, task-driven AI agent framework for coding tasks like refactoring and testing, built on Hugging Face models. | [GitHub](https://github.com/huggingface/smolagents), [Course](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents) |
+| **aider** | CLI Agent | Autonomous coding agent for editing codebases, with improved multi-file handling. | [GitHub](https://github.com/Aider-AI/aider) |
+| **OpenHands** | Agent | Open-source agent (formerly OpenDevin) for complex software development tasks, integrating with Git and Docker. | [GitHub](https://github.com/All-Hands-AI/OpenHands) |
 
 **Note on Agents:**  
-AI agents like aider and OpenDevin differ from traditional assistants by autonomously handling multi-step tasks (e.g., scaffolding a project, refactoring a codebase). These are evaluated for their ability to execute complex workflows, integrate with tools (e.g., Git, Docker), and manage multi-file contexts.
+AI agents like aider, OpenHands, Refact.ai’s AI Agent, Hugging Face’s SmolAgents, and potentially Google AI Studio’s Gemini-based workflows differ from traditional assistants by autonomously handling multi-step tasks (e.g., scaffolding a project, refactoring a codebase, or automating CI/CD pipelines). These are evaluated for their ability to execute complex workflows, integrate with tools (e.g., Git, Docker), and manage multi-file contexts.
 
-## Local Model Backends & Setups (tentative list)
+## Local Model Backends & Setups
+
 These are the platforms used to run local LLMs, enabling privacy-focused or offline coding assistance.
 
 | Backend | Description | Links |
 |---------|-------------|-------|
-| **Ollama** | Lightweight LLM runner for local models. | [ollama.com](https://ollama.com/) |
-| **LM Studio** | GUI-based platform for running LLMs. | [lmstudio.ai](https://lmstudio.ai/) |
-| **GPT4All** | Open-source LLM runner with model hub. | [gpt4all.io](https://gpt4all.io/) |
-| **Jan** |  Local AI platform for coding and chat. | [jan.ai](https://jan.ai/) |
-| **llama.cpp** |High-performance LLM inference engine. | [GitHub](https://github.com/ggerganov/llama.cpp) |
+| **Ollama** | Lightweight LLM runner for local models, with enhanced GPU support. | [ollama.com](https://ollama.com/) |
+| **LM Studio** | GUI-based platform for running LLMs, with improved model quantization. | [lmstudio.ai](https://lmstudio.ai/) |
+| **GPT4All** | Open-source LLM runner with an expanded model hub. | [gpt4all.io](https://gpt4all.io/) |
+| **Jan** | Local AI platform for coding and chat, with better multi-model support. | [jan.ai](https://jan.ai/) |
+| **llama.cpp** | High-performance LLM inference engine, optimized for low-resource devices. | [GitHub](https://github.com/ggerganov/llama.cpp) |
+| **Refact Hosting** | Self-hosted backend for Refact.ai, supporting fine-tuned models on private codebases. | [Website](https://refact.ai/self-hosting/) |
+| **Hugging Face Transformers** | Framework for running and fine-tuning code-focused LLMs locally, compatible with Hugging Face Hub models. | [Website](https://huggingface.co/docs/transformers), [GitHub](https://github.com/huggingface/transformers) |
 
-**Local Models Tested (Examples):**  
-- `codestral`  
-- `codellama` 
-- `deepseek-coder`
+**Local Models Tested (Examples):**
+- `codestral` (Mistral-based, optimized for code)  
+- `codellama` (Meta AI’s code-focused model)  
+- `deepseek-coder` (e.g., DeepSeek-Coder-6.7B, DeepSeek-R-33B)  
+- `starcoder2` (BigCode’s updated model)  
+- `gemma` (Google’s lightweight code model, e.g., CodeGemma)
 
-## (Planned) Repository Structure
+## Repository Structure
+
 ```
-...
-│
-├── windsurf/            # Tests and notes for Codeium (Cloud)
+├── codeium/
 │   └── notes.md
-│
-├── continue_dev/       # Tests and notes for Continue.dev
-│   ├── ollama_tests/     # Examples using Ollama backend
-│   ├── lm_studio_tests/  # Examples using LM Studio backend
-│   ├── config_examples/  # Sample config.json files
-│   └── notes.md          # Observations (incl. local backend comparisons)
-│
-├── github_copilot/     # Tests and notes for GitHub Copilot (Cloud)
+├── continue_dev/
+│   ├── ollama_tests/
+│   ├── lm_studio_tests/
+│   ├── config_examples/
 │   └── notes.md
-│
+├── github_copilot/
+│   └── notes.md
+├── refact/
+│   ├── self_hosted_tests/
+│   ├── plugin_tests/
+│   ├── config_examples/
+│   └── notes.md
+├── deepseek_coder/
+│   ├── api_tests/
+│   ├── local_tests/
+│   ├── config_examples/
+│   └── notes.md
+├── huggingface/
+│   ├── smolagents_tests/
+│   ├── transformers_tests/
+│   ├── config_examples/
+│   └── notes.md
+├── google_ai_studio/
+│   ├── prompt_tests/
+│   ├── api_tests/
+│   ├── starter_app_tests/
+│   ├── config_examples/
+│   └── notes.md
 └── (other_assistant_or_backend_folders...)/
-    ├── ...
     └── notes.md
-...
 ```
 
-## (Planned) Testing Workflow
+## Testing Workflow
 
-*   **Setup & Configuration:** Ease of installing assistants and setting up local backends (Ollama, LM Studio, etc.).
-*   **Resource Usage:** Monitoring CPU, RAM, and VRAM consumption for local models.
-*   **Performance:** Speed and responsiveness of suggestions/chat.
-*   **Code Completion:** Quality and relevance of single/multi-line completions.
-*   **Code Generation:** Creating functions, classes, tests based on prompts/comments.
-*   **Refactoring & Debugging:** Usefulness of suggestions for improving or fixing code.
-*   **Chat & Explanation:** Quality of interaction for explaining code or answering questions.
-*   **Context Awareness:** How well the assistant uses project context (especially relevant for local models with limited context windows vs tools like Cody/Copilot).
+- **Setup & Configuration**
+- **Resource Usage**
+- **Performance**
+- **Code Completion**
+- **Code Generation**
+- **Refactoring & Debugging**
+- **Chat & Explanation**
+- **Context Awareness**
+- **Automation (Agents)**
 
 ## Resources
 
 ### General AI Coding
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot)  
 - [Ollama Getting Started](https://ollama.com/docs)  
+- [Refact.ai Documentation](https://docs.refact.ai/)  
+- [DeepSeek Coder Documentation](https://coder.deepseek.com/docs)  
+- [Hugging Face Transformers Documentation](https://huggingface.co/docs/transformers)  
+- [Google AI Studio Quickstart](https://ai.google.dev/)  
+- [Gemini API Docs](https://ai.google.dev/)
 
 ### AI Agents
-- [Microsoft AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners): Intro to agent concepts.  
-- [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/en/unit0/introduction): Practical agent workflows.
-- [Building Code Agents with Hugging Face smolagents](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents): How to build your own code agents using smolagents from Hugging Face.
-- [AutoGen](https://github.com/microsoft/autogen): Multi-agent collaboration for coding.  
-- [CrewAI](https://github.com/joaomdmoura/crewAI): Task-driven agent framework.  
-- [LangChain Agents](https://python.langchain.com/docs/modules/agents/): Custom agents for coding tasks.
+- [Microsoft AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners)  
+- [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/en/unit0/introduction)  
+- [Building Code Agents with SmolAgents](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents)  
+- [AutoGen](https://github.com/microsoft/autogen)  
+- [CrewAI](https://github.com/joaomdmoura/crewAI)  
+- [LangChain Agents](https://python.langchain.com/docs/modules/agents/)  
+- [Refact.ai AI Agent Guide](https://docs.refact.ai/ai-agent/)
