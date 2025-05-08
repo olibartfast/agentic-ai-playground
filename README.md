@@ -126,5 +126,5 @@ These are the platforms used to run local LLMs, enabling privacy-focused or offl
 * [Building Code Agents with SmolAgents](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents)
 * [AutoGen](https://github.com/microsoft/autogen)
 * [CrewAI](https://github.com/joaomdmoura/crewAI)
-* [LangChain Agents](https://python.langchain.com/v0.1/docs/modules/agents/))
+* [LangChain Agents](https://python.langchain.com/v0.1/docs/modules/agents/)
 * [Refact.ai AI Agent Guide](https://docs.refact.ai/ai-agent/)
