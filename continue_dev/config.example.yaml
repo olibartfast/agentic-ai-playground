@@ -1,0 +1,70 @@
+name: Local Assistant
+version: 1.0.0
+schema: v1
+models:
+  - name: Gemma 3 27B ollama
+    provider: ollama
+    model: gemma3:27b-it-qat
+    roles:
+      - autocomplete
+  - name: Grok3 Beta
+    provider: xAI
+    model: grok-3-beta
+    apiKey: XXXX_YOUR_XAI_API_KEY_XXXX
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8 together
+    provider: together
+    model: meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8
+    apiKey: XXXX_YOUR_TOGETHER_API_KEY_XXXX # Placeholder for your Together API Key
+  - name: Qwen/Qwen2.5-Coder-32B-Instruct together
+    provider: together
+    model: Qwen/Qwen2.5-Coder-32B-Instruct
+    apiKey: XXXX_YOUR_TOGETHER_API_KEY_XXXX # Placeholder for your Together API Key
+  - name: deepseek-ai/DeepSeek-V3 together
+    provider: together
+    model: deepseek-ai/DeepSeek-V3
+    apiKey: XXXX_YOUR_TOGETHER_API_KEY_XXXX # Placeholder for your Together API Key
+  - name: gemini-2.5-pro-preview-05-06
+    provider: gemini
+    model: gemini-2.5-pro-preview-05-06
+    apiKey:  XXXX_YOUR_GEMINI_API_KEY_XXXX # Placeholder for your Gemini API Key
+  - name: llama-3.3-70b cerebras
+    provider: cerebras
+    model: llama-3.3-70b
+    apiKey: XXXX_YOUR_CEREBRAS_API_KEY_XXXX # Placeholder for your Cerebras API Key
+  - name: devstral ollama
+    provider: ollama
+    model: devstral:latest
+    roles:
+      - autocomplete
+  - name: Qwen 2.5 Coder 7b
+    provider: lmstudio
+    model: qwen-coder2.5-7b
+    apiBase: http://localhost:1234/v1/
+    roles:
+      - autocomplete
+  - name: Claude 4 Opus
+    provider: anthropic
+    model: claude-opus-4-20250514 
+    apiKey: XXXX_YOUR_ANTHROPIC_API_KEY_XXXX # Placeholder for your Anthropic API Key
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      contextLength: 200000
+      maxTokens: 4096 
+    capabilities:
+      - tool_use
+      - image_input
+  - name: deepseek-r1-distill-llama-70b
+    provider: cerebras
+    model: deepseek-r1-distill-llama-70b
+    apiKey: XXXX_YOUR_CEREBRAS_API_KEY_XXXX # Placeholder for your Cerebras API Key
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase
