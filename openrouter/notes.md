@@ -19,14 +19,10 @@
 1. **Sign up for OpenRouter:**  
    [Create an account here](https://openrouter.ai/signup).
 
-2. **Create your API key:**  
-   Go to the [API keys page](https://openrouter.ai/keys) and generate a new key.  
-   **Store your API key securely.**
-
-3. **Choose a model:**  
+2. **Choose a model:**  
    Browse the [list of supported models](https://openrouter.ai/models).
 
-4. **Configure Continue.dev:**  
+3. **Configure Continue.dev:**  
    Edit your `~/.continue/config.json` (or `config.yaml`) to include your OpenRouter model.
 
 ---
