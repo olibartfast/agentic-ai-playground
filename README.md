@@ -57,9 +57,8 @@ These are the platforms used to run local LLMs or access remote models, enabling
 * `codellama` (Meta AI’s code-focused model)
 * `deepseek-coder` (e.g., DeepSeek-Coder-6.7B, DeepSeek-R-33B)
 * `gemma` (Google’s lightweight code model, e.g., CodeGemma)
-* `qwen3-coder## 🔌 MCP Resources
-
-- [VS Code MCP extension docs](https://code.visualstudio.com/mcp)`
+* `qwen3-coder`
+* `kimi-k2`
 
 ## Repository Structure (Planned TODO)
 
