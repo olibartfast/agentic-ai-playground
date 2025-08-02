@@ -57,7 +57,9 @@ These are the platforms used to run local LLMs or access remote models, enabling
 * `codellama` (Meta AI’s code-focused model)
 * `deepseek-coder` (e.g., DeepSeek-Coder-6.7B, DeepSeek-R-33B)
 * `gemma` (Google’s lightweight code model, e.g., CodeGemma)
-* `qwen3-coder`
+* `qwen3-coder## 🔌 MCP Resources
+
+- [VS Code MCP extension docs](https://code.visualstudio.com/mcp)`
 
 ## Repository Structure (Planned TODO)
 
@@ -143,3 +145,9 @@ These are the platforms used to run local LLMs or access remote models, enabling
 * [LangChain Agents](https://python.langchain.com/v0.1/docs/modules/agents/)
 * [Refact.ai AI Agent Guide](https://docs.refact.ai/ai-agent/)
 * [ADK Sample Agents](https://github.com/google/adk-samples)
+
+## 🔌 MCP Resources
+
+- [VS Code MCP extension docs](https://code.visualstudio.com/mcp)
+- [Hugging Face MCP Course – Unit 2: Continue Client](https://huggingface.co/learn/mcp-course/en/unit2/continue-client)
+
