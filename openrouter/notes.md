@@ -119,33 +119,15 @@ You can use OpenRouter to access a wide range of models with your Copilot extens
 
 1. **Open Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P`).
 2. Search for and select:  
-   `Copilot: Set Custom Model Provider`
-3. Enter the following URL as the provider endpoint:
-
-   ```
-   https://openrouter.ai/api/v1
-   ```
+   `Github Copilot: Manage Models`
+3. Select OpenRouter provider in the Manage Models list
 
 4. When prompted for an API key, paste your OpenRouter API key.
 
-5. (Optional) **Choose a model**  
+5. **Choose a model**  
    You may be able to specify a model in the settings or via the Copilot interface.  
    Example model: `meta-llama/llama-3-70b-instruct`
 
----
-
-## 4. Advanced: Set Model via Environment Variable
-
-Some Copilot clients allow you to set the model and API key via environment variables.  
-Add these to your shell profile (`.bashrc`, `.zshrc`, etc.):
-
-```sh
-export COPILOT_CUSTOM_API_URL="https://openrouter.ai/api/v1"
-export COPILOT_CUSTOM_API_KEY="<YOUR_OPENROUTER_API_KEY>"
-export COPILOT_CUSTOM_MODEL="meta-llama/llama-3-70b-instruct"  # Optional
-```
-
-Restart your editor after setting these.
 
 ---
 
