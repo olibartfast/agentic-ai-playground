@@ -14,8 +14,6 @@
 
 ## a. Enable on Continue.dev
 
-[OpenRouter](https://openrouter.ai/) is a unified interface for commercial and open-source models, giving you access to the best models at the best prices.
-
 ## Steps
 
 1. **Sign up for OpenRouter:**  
