@@ -1,8 +1,3 @@
-Here is the **rewritten Markdown guide** for installing and running **Cursor IDE on Linux via AppImage**, now using a `VERSION` variable for flexibility:
-
----
-
-````markdown
 # Cursor IDE – Linux AppImage Installation Guide
 
 A lightweight guide to install and run **Cursor IDE** using the **AppImage** format on Linux. No root access or package manager required.
