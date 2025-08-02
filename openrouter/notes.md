@@ -13,7 +13,6 @@
 ## 3. Enable OpenRouter API Key in Applications
 
 ## a. Enable on Continue.dev
-Here’s a **cleaned-up, markdown-friendly version** of your OpenRouter setup instructions for Continue.dev, with improved formatting and clarity. This version uses standard Markdown (not MDX/JSX Tabs), so it will render well on GitHub, Notion, or most Markdown viewers.
 
 [OpenRouter](https://openrouter.ai/) is a unified interface for commercial and open-source models, giving you access to the best models at the best prices.
 
