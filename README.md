@@ -18,7 +18,7 @@ This section lists the AI code assistants and agents under evaluation, categoriz
 | ------------------------------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Continue.dev**               | IDE Plugin            | Open-source IDE extension for local and cloud models, supporting VS Code and JetBrains.                                                                         | [Website](https://continue.dev/), [GitHub](https://github.com/continuedev/continue)                                                                                                                   |
 | **GitHub Copilot**             | IDE Plugin            | Cloud-based assistant with enhanced context awareness and multi-language support.                                                                               | [Website](https://github.com/features/copilot)                                                                                                                                                        |
-| **Windsurf (formerly Codeium)**| IDE Plugin            | Cloud/local hybrid for code suggestions, with improved local model support.                                                                                     | [Website](https://codeium.com/)                                                                                                                                                                       |
+| **Windsurf**| IDE Plugin            | Cloud/local hybrid for code suggestions, with improved local model support.                                                                                     | [Website](https://codeium.com/)                                                                                                                                                                       |
 | **Tabnine**                    | IDE Plugin            | AI-powered completion with local and cloud model options, emphasizing privacy.                                                                                  | [Website](https://www.tabnine.com/)                                                                                                                                                                   |
 | **Amazon Q Developer**         | IDE Plugin            | AWS’s assistant for coding, debugging, and cloud integration.                                                                                                   | [Website](https://aws.amazon.com/q/developer/)                                                                                                                                                        |
 | **Cody (Sourcegraph)**         | IDE Plugin            | Context-aware assistant leveraging project-wide codebases for precise suggestions.                                                                              | [Website](https://sourcegraph.com/cody)                                                                                                                                                               |
@@ -31,6 +31,7 @@ This section lists the AI code assistants and agents under evaluation, categoriz
 | **OpenHands**                  | Agent                 | Open-source agent (formerly OpenDevin) for complex software development tasks, integrating with Git and Docker.                                                 | [GitHub](https://github.com/All-Hands-AI/OpenHands)                                                                                                                                                   |
 | **JetBrains AI Assistant**     | IDE Plugin            | AI-powered assistant integrated into JetBrains IDEs (e.g., CLion) offering intelligent code completion, chat, doc/test generation.                              | [Plugin](https://plugins.jetbrains.com/plugin/22282-jetbrains-ai-assistant), [Docs](https://www.jetbrains.com/help/clion/ai-assistant-in-jetbrains-ides.html)                                         |
 | **ADK Sample Agents**          | Multi-Agent Framework | Sample multi-agent applications using Google’s Agent Development Kit (ADK) for Python and Java.                                                                 | [Samples Repo](https://github.com/google/adk-samples), [Docs](https://google.github.io/adk-docs/), [Python SDK](https://github.com/google/adk-python), [Java SDK](https://github.com/google/adk-java) |
+| **ForgeCode**                  | IDE/Agent             | Free + Pro tiers. intelligent code optimization, smarter and faster workflows.                                      | Individual developers, high-efficiency needs.                                                                                                                                                          |
 
 **Note on Agents:**  
 AI agents like aider, OpenHands, Refact.ai’s AI Agent, Hugging Face’s SmolAgents, and ADK-based sample agents differ from traditional assistants by autonomously handling multi-step tasks (e.g., scaffolding a project, refactoring a codebase, or automating CI/CD pipelines). These are evaluated for their ability to execute complex workflows, integrate with tools (e.g., Git, Docker), and manage multi-file contexts.
@@ -56,12 +57,13 @@ These are the platforms used to run local LLMs or access remote models, enabling
 * `codellama` (Meta AI’s code-focused model)
 * `deepseek-coder` (e.g., DeepSeek-Coder-6.7B, DeepSeek-R-33B)
 * `gemma` (Google’s lightweight code model, e.g., CodeGemma)
+* `qwen3-coder`
 
 ## Repository Structure (Planned TODO)
 
 ```
 
-├── codeium/
+├── windsurf/
 │   └── notes.md
 ├── continue\_dev/
 │   ├── ollama\_tests/
