@@ -14,25 +14,25 @@ This repository serves as a playground and testing ground for evaluating and com
 
 This section lists the AI code assistants and agents under evaluation, categorized by their interface (IDE plugins, CLI tools, or standalone agents). Assistants provide suggestions or completions, while agents can autonomously execute multi-step tasks.
 
-| Tool                           | Type                  | Description                                                                                                                                                     | Links                                                                                                                                                                                                 |
-| ------------------------------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Continue.dev**               | IDE Plugin            | Open-source IDE extension for local and cloud models, supporting VS Code and JetBrains.                                                                         | [Website](https://continue.dev/), [GitHub](https://github.com/continuedev/continue)                                                                                                                   |
-| **GitHub Copilot**             | IDE Plugin            | Cloud-based assistant                                                                                | [Website](https://github.com/features/copilot)                                                                                                                                                        |
-| **Windsurf**| IDE/IDE Plugin            | Cloud/local hybrid for code suggestions,                                                                                    | [Website](https://codeium.com/)                                                                                                                                                                       |
-| **Tabnine**                    | IDE Plugin            |                                                                                 | [Website](https://www.tabnine.com/)                                                                                                                                                                   |
-| **Amazon Q Developer**         | IDE Plugin            | AWS’s assistant for coding, debugging, and cloud integration.                                                                                                   | [Website](https://aws.amazon.com/q/developer/)                                                                                                                                                        |
-| **Ampcode (Sourcegraph)**         | IDE Plugin/CLI            |                                                                               | [Website](https://sourcegraph.com/cody)                                                                                                                                                               |
-| **Cursor**                     | IDE                   |                                                                               | [Website](https://cursor.sh/)                                                                                                                                                                         |
-| **Refact.ai**                  | IDE Plugin/CLI        |  | [Website](https://refact.ai/), [GitHub](https://github.com/smallcloudai/refact)                                                                                                                       |
-| **DeepSeek Coder**             | IDE Plugin/API        | AI assistant leveraging DeepSeek’s code-focused models for completion and generation, with API and local model support.                                         | [GitHub](https://github.com/deepseek-ai/DeepSeek-Coder)                                                                                                                                               |
-| **Google AI Studio**           | Browser-Based IDE     | Cloud-based IDE for prototyping with Gemini models, supporting code generation, completion, and multimodal inputs.                                              | [Website](https://aistudio.google.com/), [Gemini API Docs](https://ai.google.dev/)                                                                                                                    |
-| **SmolAgents (Hugging Face)**  | CLI Agent             | Lightweight, task-driven AI agent framework for coding tasks like refactoring and testing, built on Hugging Face models.                                        | [GitHub](https://github.com/huggingface/smolagents), [Course](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents)                                                |
-| **aider**                      | CLI Agent             | Autonomous coding agent for editing codebases.                                                                               | [GitHub](https://github.com/Aider-AI/aider)                                                                                                                                                           |
-| **OpenHands**                  | Agent                 | Open-source agent (formerly OpenDevin) for complex software development tasks, integrating with Git and Docker.                                                 | [GitHub](https://github.com/All-Hands-AI/OpenHands)                                                                                                                                                   |
-| **JetBrains AI Assistant**     | IDE Plugin            | AI-powered assistant integrated into JetBrains IDEs (e.g., CLion) offering intelligent code completion, chat, doc/test generation.                              | [Plugin](https://plugins.jetbrains.com/plugin/22282-jetbrains-ai-assistant), [Docs](https://www.jetbrains.com/help/clion/ai-assistant-in-jetbrains-ides.html)                                         |
-| **ADK Sample Agents**          | Multi-Agent Framework | Sample multi-agent applications using Google’s Agent Development Kit (ADK) for Python and Java.                                                                 | [Samples Repo](https://github.com/google/adk-samples), [Docs](https://google.github.io/adk-docs/), [Python SDK](https://github.com/google/adk-python), [Java SDK](https://github.com/google/adk-java) |
-| **ForgeCode**                  | IDE/Agent/CLI             |                                   |                                                                                                                                                         |
-| **Claude Code**                | CLI Agent                 | Anthropic's CLI-based coding assistant for analyzing codebases and providing interactive chat about code.           | [Install Guide](claude_code/install.md), [GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/examples/claude-code)        |
+| Tool                           | Type                  | Links                                                                                                                                                                                                 |
+| ------------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Continue.dev**               | IDE Plugin            | [Website](https://continue.dev/), [GitHub](https://github.com/continuedev/continue)                                                                                                                   |
+| **GitHub Copilot**             | IDE Plugin            | [Website](https://github.com/features/copilot)                                                                                                                                                        |
+| **Windsurf**                   | IDE Plugin            | [Website](https://codeium.com/)                                                                                                                                                                       |
+| **Tabnine**                    | IDE Plugin            | [Website](https://www.tabnine.com/)                                                                                                                                                                   |
+| **Amazon Q Developer**         | IDE Plugin            | [Website](https://aws.amazon.com/q/developer/)                                                                                                                                                        |
+| **Ampcode (Sourcegraph)**      | IDE Plugin/CLI        | [Website](https://sourcegraph.com/cody)                                                                                                                                                               |
+| **Cursor**                     | IDE                   | [Website](https://cursor.sh/)                                                                                                                                                                         |
+| **Refact.ai**                  | IDE Plugin/CLI        | [Website](https://refact.ai/), [GitHub](https://github.com/smallcloudai/refact)                                                                                                                       |
+| **DeepSeek Coder**             | IDE Plugin/API        | [GitHub](https://github.com/deepseek-ai/DeepSeek-Coder)                                                                                                                                               |
+| **Google AI Studio**           | Browser-Based IDE     | [Website](https://aistudio.google.com/), [Gemini API Docs](https://ai.google.dev/)                                                                                                                    |
+| **SmolAgents (Hugging Face)**  | CLI Agent             | [GitHub](https://github.com/huggingface/smolagents), [Course](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents)                                                |
+| **aider**                      | CLI Agent             | [GitHub](https://github.com/Aider-AI/aider)                                                                                                                                                           |
+| **OpenHands**                  | Agent                 | [GitHub](https://github.com/All-Hands-AI/OpenHands)                                                                                                                                                   |
+| **JetBrains AI Assistant**     | IDE Plugin            | [Plugin](https://plugins.jetbrains.com/plugin/22282-jetbrains-ai-assistant), [Docs](https://www.jetbrains.com/help/clion/ai-assistant-in-jetbrains-ides.html)                                         |
+| **ADK Sample Agents**          | Multi-Agent Framework | [Samples Repo](https://github.com/google/adk-samples), [Docs](https://google.github.io/adk-docs/), [Python SDK](https://github.com/google/adk-python), [Java SDK](https://github.com/google/adk-java) |
+| **ForgeCode**                  | IDE/Agent/CLI         |                                                                                                                                                         |
+| **Claude Code**                | CLI Agent             | [Install Guide](claude_code/install.md), [GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/examples/claude-code)        |
 
 
 **Note on Agents:**  
@@ -42,16 +42,16 @@ AI agents like aider, OpenHands, Refact.ai’s AI Agent, Hugging Face’s SmolAg
 
 These are the platforms used to run local LLMs or access remote models, enabling privacy-focused or flexible cloud-assisted coding.
 
-| Backend                       | Description                                                                                               | Links                                                                                                      |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Ollama**                    | Lightweight LLM runner for local models, with enhanced GPU support.                                       | [ollama.com](https://ollama.com/)                                                                          |
-| **LM Studio**                 | GUI-based platform for running LLMs, with improved model quantization.                                    | [lmstudio.ai](https://lmstudio.ai/)                                                                        |
-| **GPT4All**                   | Open-source LLM runner with an expanded model hub.                                                        | [gpt4all.io](https://gpt4all.io/)                                                                          |
-| **Jan**                       | Local AI platform for coding and chat, with better multi-model support.                                   | [jan.ai](https://jan.ai/)                                                                                  |
-| **llama.cpp**                 | High-performance LLM inference engine, optimized for low-resource devices.                                | [GitHub](https://github.com/ggerganov/llama.cpp)                                                           |
-| **Refact Hosting**            | Self-hosted backend for Refact.ai, supporting fine-tuned models on private codebases.                     | [Website](https://docs.refact.ai/guides/version-specific/self-hosted/)                                     |
-| **Hugging Face Transformers** | Framework for running and fine-tuning code-focused LLMs locally, compatible with Hugging Face Hub models. | [Website](https://huggingface.co/docs/transformers), [GitHub](https://github.com/huggingface/transformers) |
-| **OpenRouter**                | Unified API gateway offering access to top LLMs (GPT-4, Claude, Mistral, etc.) with a single key.         | [openrouter.ai](https://openrouter.ai), [Docs](https://openrouter.ai/docs)                                 |
+| Backend                       | Links                                                                                                      |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Ollama**                    | [ollama.com](https://ollama.com/)                                                                          |
+| **LM Studio**                 | [lmstudio.ai](https://lmstudio.ai/)                                                                        |
+| **GPT4All**                   | [gpt4all.io](https://gpt4all.io/)                                                                          |
+| **Jan**                       | [jan.ai](https://jan.ai/)                                                                                  |
+| **llama.cpp**                 | [GitHub](https://github.com/ggerganov/llama.cpp)                                                           |
+| **Refact Hosting**            | [Website](https://docs.refact.ai/guides/version-specific/self-hosted/)                                     |
+| **Hugging Face Transformers** | [Website](https://huggingface.co/docs/transformers), [GitHub](https://github.com/huggingface/transformers) |
+| **OpenRouter**                | [openrouter.ai](https://openrouter.ai), [Docs](https://openrouter.ai/docs)                                 |
 
 **Local Models (Examples):**
 
@@ -74,6 +74,18 @@ These are the platforms used to run local LLMs or access remote models, enabling
 │   ├── config\_examples/
 │   └── notes.md
 ├── github\_copilot/
+│   └── notes.md
+├── claude\_code/
+│   └── install.md
+├── cursor/
+│   └── notes.md
+├── ampcode/
+│   └── notes.md
+├── forgecode/
+│   └── notes.md
+├── github\_mcp\_server/
+│   └── notes.md
+├── ollama/
 │   └── notes.md
 ├── refact/
 │   ├── self\_hosted\_tests/
