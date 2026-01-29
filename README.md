@@ -167,3 +167,6 @@ These are the platforms used to run local LLMs or access remote models, enabling
 - [VS Code MCP extension docs](https://code.visualstudio.com/mcp)
 - [Hugging Face MCP Course – Unit 2: Continue Client](https://huggingface.co/learn/mcp-course/en/unit2/continue-client)
 
+## Agent swarms
+- https://www.anthropic.com/engineering/multi-agent-research-system
+
