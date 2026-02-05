@@ -34,7 +34,9 @@ This section lists the AI code assistants and agents under evaluation, categoriz
 | **JetBrains AI Assistant**     | IDE Plugin            | [Plugin](https://plugins.jetbrains.com/plugin/22282-jetbrains-ai-assistant), [Docs](https://www.jetbrains.com/help/clion/ai-assistant-in-jetbrains-ides.html)                                         |
 | **ADK Sample Agents**          | Multi-Agent Framework | [Samples Repo](https://github.com/google/adk-samples), [Docs](https://google.github.io/adk-docs/), [Python SDK](https://github.com/google/adk-python), [Java SDK](https://github.com/google/adk-java) |
 | **Claude Code**                | CLI Agent             | [Install Guide](claude_code/install.md), [GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/examples/claude-code)                                                                   |
-| **Goose**                      | CLI Agent             | [GitHub](https://github.com/block/goose)                                                                                                                                                              |
+| **Goose**                      | Desktop App/CLI Agent | [GitHub](https://github.com/block/goose), [Docs](https://block.github.io/goose/)                                                                                                                      |
+| **OpenCode**                   | TUI/Desktop App/CLI   | [GitHub](https://github.com/anomalyco/opencode), [Website](https://opencode.ai)                                                                                                                       |
+| **OpenClaw**                   | Personal AI Assistant | [GitHub](https://github.com/openclaw/openclaw), [Website](https://openclaw.ai)                                                                                                                        |
 
 
 **Note on Agents:**  
@@ -83,6 +85,10 @@ These are the platforms used to run local LLMs or access remote models, enabling
 ├── ampcode/
 │   └── notes.md
 ├── goose/
+│   └── notes.md
+├── opencode/
+│   └── notes.md
+├── openclaw/
 │   └── notes.md
 ├── github_mcp_server/
 │   └── notes.md
