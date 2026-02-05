@@ -28,18 +28,17 @@ This section lists the AI code assistants and agents under evaluation, categoriz
 | **Refact.ai**                  | IDE Plugin/CLI        | [Website](https://refact.ai/), [GitHub](https://github.com/smallcloudai/refact)                                                                                                                       |
 | **DeepSeek Coder**             | IDE Plugin/API        | [GitHub](https://github.com/deepseek-ai/DeepSeek-Coder)                                                                                                                                               |
 | **Google AI Studio**           | Browser-Based IDE     | [Website](https://aistudio.google.com/), [Gemini API Docs](https://ai.google.dev/)                                                                                                                    |
-| **Google Antigravity**         | IDE/Platform          | [Website](https://antigravity.google/)                                                                                                                                                                |
 | **SmolAgents (Hugging Face)**  | CLI Agent             | [GitHub](https://github.com/huggingface/smolagents), [Course](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents)                                                |
 | **aider**                      | CLI Agent             | [Notes](aider/notes.md), [GitHub](https://github.com/Aider-AI/aider)                                                                                                                                  |
 | **OpenHands**                  | Agent                 | [GitHub](https://github.com/All-Hands-AI/OpenHands)                                                                                                                                                   |
 | **JetBrains AI Assistant**     | IDE Plugin            | [Plugin](https://plugins.jetbrains.com/plugin/22282-jetbrains-ai-assistant), [Docs](https://www.jetbrains.com/help/clion/ai-assistant-in-jetbrains-ides.html)                                         |
 | **ADK Sample Agents**          | Multi-Agent Framework | [Samples Repo](https://github.com/google/adk-samples), [Docs](https://google.github.io/adk-docs/), [Python SDK](https://github.com/google/adk-python), [Java SDK](https://github.com/google/adk-java) |
-| **ForgeCode**                  | IDE/Agent/CLI         |                                                                                                                                                         |
-| **Claude Code**                | CLI Agent             | [Install Guide](claude_code/install.md), [GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/examples/claude-code)        |
+| **Claude Code**                | CLI Agent             | [Install Guide](claude_code/install.md), [GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/examples/claude-code)                                                                   |
+| **Goose**                      | CLI Agent             | [GitHub](https://github.com/block/goose)                                                                                                                                                              |
 
 
 **Note on Agents:**  
-AI agents like aider, OpenHands, Refact.ai’s AI Agent, Hugging Face’s SmolAgents, and ADK-based sample agents differ from traditional assistants by autonomously handling multi-step tasks (e.g., scaffolding a project, refactoring a codebase, or automating CI/CD pipelines). These are evaluated for their ability to execute complex workflows, integrate with tools (e.g., Git, Docker), and manage multi-file contexts.
+AI agents like aider, OpenHands, Refact.ai's AI Agent, Hugging Face's SmolAgents, and ADK-based sample agents differ from traditional assistants by autonomously handling multi-step tasks (e.g., scaffolding a project, refactoring a codebase, or automating CI/CD pipelines). These are evaluated for their ability to execute complex workflows, integrate with tools (e.g., Git, Docker), and manage multi-file contexts.
 
 ## Local & Remote Model Backends
 
@@ -59,71 +58,69 @@ These are the platforms used to run local LLMs or access remote models, enabling
 **Local Models (Examples):**
 
 * `codestral` (Mistral-based, optimized for code)
-* `codellama` (Meta AI’s code-focused model)
+* `codellama` (Meta AI's code-focused model)
 * `deepseek-coder` (e.g., DeepSeek-Coder-6.7B, DeepSeek-R-33B)
-* `gemma` (Google’s lightweight code model, e.g., CodeGemma)
+* `gemma` (Google's lightweight code model, e.g., CodeGemma)
 * `qwen3-coder`
 * `kimi-k2`
 
 ## Repository Structure (Planned TODO)
 
 ```
-
 ├── windsurf/
 │   └── notes.md
-├── continue\_dev/
-│   ├── ollama\_tests/
-│   ├── lm\_studio\_tests/
-│   ├── config\_examples/
+├── continue_dev/
+│   ├── ollama_tests/
+│   ├── lm_studio_tests/
+│   ├── config_examples/
 │   └── notes.md
-├── github\_copilot/
+├── github_copilot/
 │   └── notes.md
-├── claude\_code/
+├── claude_code/
 │   └── install.md
 ├── cursor/
 │   └── notes.md
 ├── ampcode/
 │   └── notes.md
-├── forgecode/
+├── goose/
 │   └── notes.md
-├── github\_mcp\_server/
+├── github_mcp_server/
 │   └── notes.md
 ├── ollama/
 │   └── notes.md
 ├── refact/
-│   ├── self\_hosted\_tests/
-│   ├── plugin\_tests/
-│   ├── config\_examples/
+│   ├── self_hosted_tests/
+│   ├── plugin_tests/
+│   ├── config_examples/
 │   └── notes.md
-├── deepseek\_coder/
-│   ├── api\_tests/
-│   ├── local\_tests/
-│   ├── config\_examples/
+├── deepseek_coder/
+│   ├── api_tests/
+│   ├── local_tests/
+│   ├── config_examples/
 │   └── notes.md
 ├── huggingface/
-│   ├── smolagents\_tests/
-│   ├── transformers\_tests/
-│   ├── config\_examples/
+│   ├── smolagents_tests/
+│   ├── transformers_tests/
+│   ├── config_examples/
 │   └── notes.md
-├── google\_ai\_studio/
-│   ├── prompt\_tests/
-│   ├── api\_tests/
-│   ├── starter\_app\_tests/
-│   ├── config\_examples/
+├── google_ai_studio/
+│   ├── prompt_tests/
+│   ├── api_tests/
+│   ├── starter_app_tests/
+│   ├── config_examples/
 │   └── notes.md
-├── jetbrains\_ai\_assistant/
-│   ├── clion\_tests/
-│   ├── config\_examples/
+├── jetbrains_ai_assistant/
+│   ├── clion_tests/
+│   ├── config_examples/
 │   └── notes.md
-├── adk\_samples/
+├── adk_samples/
 │   ├── python/
 │   ├── java/
 │   └── notes.md
 ├── openrouter/
-│   ├── multi\_model\_tests/
-│   ├── key\_management/
+│   ├── multi_model_tests/
+│   ├── key_management/
 │   └── notes.md
-
 ```
 
 ## Testing Workflow
@@ -169,4 +166,3 @@ These are the platforms used to run local LLMs or access remote models, enabling
 
 ## Agent swarms
 - https://www.anthropic.com/engineering/multi-agent-research-system
-
