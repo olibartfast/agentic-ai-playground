@@ -66,69 +66,6 @@ These are the platforms used to run local LLMs or access remote models, enabling
 * `qwen3-coder`
 * `kimi-k2`
 
-## Repository Structure (Planned TODO)
-
-```
-├── windsurf/
-│   └── notes.md
-├── continue_dev/
-│   ├── ollama_tests/
-│   ├── lm_studio_tests/
-│   ├── config_examples/
-│   └── notes.md
-├── github_copilot/
-│   └── notes.md
-├── claude_code/
-│   └── install.md
-├── cursor/
-│   └── notes.md
-├── ampcode/
-│   └── notes.md
-├── goose/
-│   └── notes.md
-├── opencode/
-│   └── notes.md
-├── openclaw/
-│   └── notes.md
-├── github_mcp_server/
-│   └── notes.md
-├── ollama/
-│   └── notes.md
-├── refact/
-│   ├── self_hosted_tests/
-│   ├── plugin_tests/
-│   ├── config_examples/
-│   └── notes.md
-├── deepseek_coder/
-│   ├── api_tests/
-│   ├── local_tests/
-│   ├── config_examples/
-│   └── notes.md
-├── huggingface/
-│   ├── smolagents_tests/
-│   ├── transformers_tests/
-│   ├── config_examples/
-│   └── notes.md
-├── google_ai_studio/
-│   ├── prompt_tests/
-│   ├── api_tests/
-│   ├── starter_app_tests/
-│   ├── config_examples/
-│   └── notes.md
-├── jetbrains_ai_assistant/
-│   ├── clion_tests/
-│   ├── config_examples/
-│   └── notes.md
-├── adk_samples/
-│   ├── python/
-│   ├── java/
-│   └── notes.md
-├── openrouter/
-│   ├── multi_model_tests/
-│   ├── key_management/
-│   └── notes.md
-```
-
 ## Testing Workflow
 
 * **Setup & Configuration**
@@ -175,5 +112,5 @@ These are the platforms used to run local LLMs or access remote models, enabling
 - [VS Code MCP extension docs](https://code.visualstudio.com/mcp)
 - [Hugging Face MCP Course – Unit 2: Continue Client](https://huggingface.co/learn/mcp-course/en/unit2/continue-client)
 
-## Agent swarms
+## Agent swarms docs
 - https://www.anthropic.com/engineering/multi-agent-research-system
