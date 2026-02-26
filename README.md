@@ -57,26 +57,6 @@ These are the platforms used to run local LLMs or access remote models, enabling
 | **Hugging Face Transformers** | [Website](https://huggingface.co/docs/transformers), [GitHub](https://github.com/huggingface/transformers) |
 | **OpenRouter**                | [openrouter.ai](https://openrouter.ai), [Docs](https://openrouter.ai/docs)                                 |
 
-**Local Models (Examples):**
-
-* `codestral` (Mistral-based, optimized for code)
-* `codellama` (Meta AI's code-focused model)
-* `deepseek-coder` (e.g., DeepSeek-Coder-6.7B, DeepSeek-R-33B)
-* `gemma` (Google's lightweight code model, e.g., CodeGemma)
-* `qwen3-coder`
-* `kimi-k2`
-
-## Testing Workflow
-
-* **Setup & Configuration**
-* **Resource Usage**
-* **Performance**
-* **Code Completion**
-* **Code Generation**
-* **Refactoring & Debugging**
-* **Chat & Explanation**
-* **Context Awareness**
-* **Automation (Agents)**
 
 ## Resources
 
