@@ -8,26 +8,27 @@ Last verified: May 2026.
 
 ---
 
-## Overview
+## How it works
 
-Claude Code's CLI talks the Anthropic Messages API (`/v1/messages`). Anything
-that exposes that wire format works as a drop-in.
+Claude Code talks the Anthropic Messages API (`/v1/messages`). Setting
+`ANTHROPIC_BASE_URL` redirects all traffic to a custom endpoint for that
+session. When unset, Claude Code uses the official Anthropic API normally.
 
-### Configuration mechanism
-
-Two environment variables drive routing:
+**You can switch freely between providers and official Anthropic — just not
+in the same session simultaneously.**
 
 ```bash
 export ANTHROPIC_BASE_URL="https://your-endpoint/anthropic"
 export ANTHROPIC_AUTH_TOKEN="your-key"
+
+# Map Anthropic model tiers to provider-specific model names
 export ANTHROPIC_DEFAULT_OPUS_MODEL="model-name"
 export ANTHROPIC_DEFAULT_SONNET_MODEL="model-name"
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="model-name"
-```
 
-The model alias env vars (`opus`/`sonnet`/`haiku`) override what those names
-resolve to at the new endpoint. Set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1`
-for non-Anthropic backends to avoid telemetry calls that will fail.
+# Suppress telemetry calls that will fail on non-Anthropic backends
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+```
 
 ---
 
@@ -35,7 +36,8 @@ for non-Anthropic backends to avoid telemetry calls that will fail.
 
 ### 1. Native Anthropic-compatible endpoints
 
-Some providers ship a Messages-API surface specifically for Claude Code:
+Some providers ship a Messages-API surface specifically for Claude Code — zero
+friction, no proxy needed:
 
 | Provider        | Base URL                              |
 | --------------- | ------------------------------------- |
@@ -43,72 +45,99 @@ Some providers ship a Messages-API surface specifically for Claude Code:
 | Z.ai (GLM)      | `https://api.z.ai/api/anthropic`      |
 | Moonshot (Kimi) | `https://api.moonshot.ai/anthropic`   |
 
-These are zero-friction — set the env vars and go.
-
 ### 2. Self-hosted with a Messages-API server
 
-- **vLLM** has first-party support for Claude Code via its Anthropic-compatible API.
-- **LiteLLM Proxy** acts as a translation layer for OpenAI-compatible backends
-  (llama.cpp, Ollama, vendor APIs without Anthropic mode).
+- **vLLM** has first-party support for Claude Code via its Anthropic-compatible
+  API.
+- **LiteLLM proxy** acts as a translation layer for OpenAI-compatible backends
+  (llama.cpp, Ollama, vendor APIs without an Anthropic mode).
 
 ### 3. Translation proxy for OpenAI-only providers
 
-For Together AI, OpenRouter, and Fireworks (which expose only Chat Completions),
-use LiteLLM's `/anthropic` passthrough endpoint or
+Together AI, OpenRouter, and Fireworks expose only Chat Completions. Use
+LiteLLM or
 [`claude-code-router`](https://github.com/musistudio/claude-code-router) to
 translate Messages → Chat Completions.
 
 ---
 
-## Shell-function pattern
+## Shell-function pattern (recommended)
 
-Add these to `~/.zshrc` or `~/.bashrc` to switch providers on demand:
+Add to `~/.bashrc` or `~/.zshrc` to switch providers on demand without
+permanently changing env vars:
 
 ```bash
+# Official Anthropic — just use `claude` normally, no override needed
+
+# DeepSeek — native Anthropic endpoint, no proxy required
 deepseek() {
-  export ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic"
-  export ANTHROPIC_AUTH_TOKEN="${DEEPSEEK_API_KEY}"
-  export ANTHROPIC_DEFAULT_OPUS_MODEL="deepseek-reasoner"
-  export ANTHROPIC_DEFAULT_SONNET_MODEL="deepseek-chat"
-  export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+  ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" \
+  ANTHROPIC_AUTH_TOKEN="${DEEPSEEK_API_KEY}" \
+  ANTHROPIC_DEFAULT_OPUS_MODEL="deepseek-v4-pro" \
+  ANTHROPIC_DEFAULT_SONNET_MODEL="deepseek-v4-pro" \
+  CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
   claude "$@"
 }
 
+# Together AI — requires LiteLLM proxy on port 4000
+together() {
+  ANTHROPIC_BASE_URL="http://localhost:4000" \
+  ANTHROPIC_AUTH_TOKEN="sk-local-dev" \
+  ANTHROPIC_DEFAULT_SONNET_MODEL="qwen3-coder" \
+  CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+  claude "$@"
+}
+
+# Z.ai (GLM) — native Anthropic endpoint
 glm() {
-  export ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"
-  export ANTHROPIC_AUTH_TOKEN="${Z_AI_API_KEY}"
-  export ANTHROPIC_DEFAULT_OPUS_MODEL="glm-4.6"
-  export ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.6"
-  export ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air"
+  ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
+  ANTHROPIC_AUTH_TOKEN="${Z_AI_API_KEY}" \
+  ANTHROPIC_DEFAULT_OPUS_MODEL="glm-4.6" \
+  ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.6" \
+  ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air" \
+  CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
   claude "$@"
 }
 
+# Moonshot (Kimi) — native Anthropic endpoint
 kimi() {
-  export ANTHROPIC_BASE_URL="https://api.moonshot.ai/anthropic"
-  export ANTHROPIC_AUTH_TOKEN="${KIMI_API_KEY}"
+  ANTHROPIC_BASE_URL="https://api.moonshot.ai/anthropic" \
+  ANTHROPIC_AUTH_TOKEN="${KIMI_API_KEY}" \
+  CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
   claude "$@"
 }
 ```
 
+Usage:
+
+```bash
+claude          # official Anthropic
+deepseek        # DeepSeek (no proxy needed)
+together        # Together AI (LiteLLM must be running)
+glm             # Z.ai GLM
+kimi            # Moonshot Kimi
+```
+
 ---
 
-## LiteLLM unified proxy
+## LiteLLM proxy (for chat-only providers)
 
-For multi-provider setups, one LiteLLM proxy speaks both Anthropic and OpenAI
-protocols and gives you a single auth surface.
+Required for Together AI, OpenRouter, NVIDIA NIM, and any provider without a
+native Anthropic endpoint.
 
-`litellm-config.yaml`:
+### Install
+
+```bash
+pip install litellm[proxy]
+```
+
+### Config (`litellm-config.yaml`)
 
 ```yaml
 model_list:
-  - model_name: deepseek-chat
+  - model_name: deepseek-v4-pro
     litellm_params:
-      model: deepseek/deepseek-chat
-      api_key: os.environ/DEEPSEEK_API_KEY
-
-  - model_name: deepseek-reasoner
-    litellm_params:
-      model: deepseek/deepseek-reasoner
+      model: deepseek/deepseek-v4-pro
       api_key: os.environ/DEEPSEEK_API_KEY
 
   - model_name: qwen3-coder
@@ -130,13 +159,11 @@ general_settings:
   master_key: sk-local-dev
 ```
 
-Run the proxy:
+### Run and connect
 
 ```bash
 litellm --config litellm-config.yaml --port 4000
 ```
-
-Point Claude Code at it:
 
 ```bash
 export ANTHROPIC_BASE_URL="http://localhost:4000"
@@ -150,52 +177,66 @@ claude
 
 ## Provider quick-reference
 
+| Provider | Native Anthropic endpoint | LiteLLM needed |
+| --- | --- | --- |
+| DeepSeek | `api.deepseek.com/anthropic` | No |
+| Z.ai (GLM) | `api.z.ai/api/anthropic` | No |
+| Moonshot (Kimi) | `api.moonshot.ai/anthropic` | No |
+| Together AI | None | Yes |
+| OpenRouter | None | Yes |
+| NVIDIA NIM | None | Yes |
+| vLLM (local) | Native (`/v1/messages`) | No |
+| Ollama / llama.cpp | None | Yes |
+
 ### DeepSeek
 
-| Endpoint                          | Notes           |
-| --------------------------------- | --------------- |
-| `api.deepseek.com/anthropic`      | Native, recommended |
-
-Models: `deepseek-chat`, `deepseek-reasoner`.
+Models: `deepseek-v4-pro`, `deepseek-v4-flash`, `deepseek-reasoner`.
+Native Anthropic endpoint — no proxy needed. Cheapest path with strong coding
+output.
 
 ### Together AI
 
-No native Anthropic endpoint. Requires LiteLLM or `claude-code-router` proxy.
-Catalog includes Qwen3-Coder, DeepSeek V3/R1, Llama, GLM, Gemma, Nemotron.
+No native Anthropic endpoint. Requires LiteLLM. Catalog includes Qwen3-Coder,
+DeepSeek V3/R1, Llama, GLM, Gemma, Nemotron. Models use HuggingFace-style
+paths.
 
 ### NVIDIA Nemotron
 
-NVIDIA Build / NIM endpoints are OpenAI-compatible only. Use LiteLLM proxy to
-expose them to Claude Code.
+NIM endpoints are OpenAI-compatible only. Use LiteLLM proxy.
+For local Nemotron via vLLM, it serves `/v1/messages` natively — no proxy
+needed.
 
 ---
 
 ## Caveats
 
+- `ANTHROPIC_BASE_URL` affects the whole session — you cannot mix official
+  Anthropic and a custom provider in the same session.
 - Tool-call schemas, streaming, and system prompt handling differ between
   Anthropic and OpenAI wire formats. Simple base-URL swaps work for chat but
   can break on complex agent loops, especially subagents and plan mode.
-- Open models below ~70B-class on coding lag noticeably on Claude Code's prompt
-  harness — it is tuned for Claude.
+- Open models below ~70B on coding tasks lag noticeably — Claude Code's prompt
+  harness is tuned for Claude.
 
 ---
 
 ## Decision matrix
 
-| Goal                                    | Recommended path                                |
-| --------------------------------------- | ----------------------------------------------- |
-| Try DeepSeek for a session              | Native `/anthropic` endpoint                    |
-| Use Together AI / OpenRouter catalog    | LiteLLM proxy + Claude Code                     |
-| Run Nemotron / Qwen / Gemma locally     | LiteLLM proxy (vLLM backend)                    |
-| Switch between many models routinely    | LiteLLM proxy pointed at this CLI               |
-| Best agentic quality (subagents, hooks) | Stay on Anthropic defaults                      |
-| Cheapest path with strong coding output | DeepSeek-Reasoner via native `/anthropic` endpoint |
+| Goal | Recommended path |
+| --- | --- |
+| Try DeepSeek for a session | Native `/anthropic` endpoint, shell function |
+| Use Together AI / OpenRouter catalog | LiteLLM proxy + shell function |
+| Run Nemotron / Qwen locally | LiteLLM proxy (vLLM backend) |
+| Switch between many providers | Shell functions per provider |
+| Best agentic quality (subagents, hooks) | Stay on official Anthropic |
+| Cheapest path with strong coding output | DeepSeek via native `/anthropic` endpoint |
 
 ---
 
 ## References
 
 - Claude Code model config: <https://code.claude.com/docs/en/model-config>
+- Claude Code env vars: <https://code.claude.com/docs/en/env-vars>
 - LiteLLM proxy: <https://docs.litellm.ai/docs/proxy/quick_start>
 - claude-code-router: <https://github.com/musistudio/claude-code-router>
-- vLLM OpenAI-compatible server: <https://docs.vllm.ai/en/latest/serving/openai_compatible_server/>
+- vLLM Anthropic-compatible server: <https://docs.vllm.ai/en/latest/serving/openai_compatible_server/>
