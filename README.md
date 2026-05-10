@@ -37,6 +37,9 @@ This section lists the AI code assistants and agents under evaluation, categoriz
 | **Goose**                      | Desktop App/CLI Agent | [GitHub](https://github.com/block/goose), [Docs](https://block.github.io/goose/)                                                                                                                      |
 | **OpenCode**                   | TUI/Desktop App/CLI   | [GitHub](https://github.com/anomalyco/opencode), [Website](https://opencode.ai)                                                                                                                       |
 | **OpenClaw**                   | Personal AI Assistant | [GitHub](https://github.com/openclaw/openclaw), [Website](https://openclaw.ai)                                                                                                                        |
+| **Zed**                        | IDE                   | [Website](https://zed.dev/), [GitHub](https://github.com/zed-industries/zed)                                                                                                                          |
+| **Hermes Agent**               | CLI Agent             | [Website](https://hermes.nixos.org/)                                                                                                                                                                   |
+| **QwenCode**                   | Browser-Based IDE/Agent | [Website](https://qwen.ai/qwencode)                                                                                                                                                                  |
 
 
 **Note on Agents:**  
@@ -56,6 +59,9 @@ These are the platforms used to run local LLMs or access remote models, enabling
 | **Refact Hosting**            | [Website](https://docs.refact.ai/guides/version-specific/self-hosted/)                                     |
 | **Hugging Face Transformers** | [Website](https://huggingface.co/docs/transformers), [GitHub](https://github.com/huggingface/transformers) |
 | **OpenRouter**                | [openrouter.ai](https://openrouter.ai), [Docs](https://openrouter.ai/docs)                                 |
+| **Mimo (Xiaomi)**             | [mimo.xiaomi.com](https://mimo.xiaomi.com/)                                                                |
+| **MiniMax**                   | [platform.minimax.io](https://platform.minimax.io/)                                                        |
+| **Z.ai**                      | [z.ai](https://z.ai/)                                                                                      |
 
 
 ## Resources
