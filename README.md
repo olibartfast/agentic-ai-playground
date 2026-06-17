@@ -93,6 +93,9 @@ These are the platforms used to run local LLMs or access remote models, enabling
 * [Refact.ai AI Agent Guide](https://docs.refact.ai/ai-agent/)
 * [ADK Sample Agents](https://github.com/google/adk-samples)
 
+### Spec-driven development
+* [Hugging Face Context Course](https://huggingface.co/learn/context-course/unit0/introduction)
+
 ## MCP Resources
 
 - [VS Code MCP extension docs](https://code.visualstudio.com/mcp)
