@@ -3,10 +3,14 @@
 - Date:
 - Repository and commit:
 - Agent and version:
-- Model checkpoint and revision:
+- Routing scenario: vendor managed / hosted gateway / hybrid / self-hosted
+- Main-agent source and model:
+- Subagent source(s) and model(s):
+- Model checkpoint and revision, when self-hosted:
 - Quantization:
-- Runtime and version:
-- Hardware and topology:
+- Runtime and version, when self-hosted:
+- Deployment target:
+- Hardware and topology, when self-hosted:
 - Context size:
 - Cold-start time:
 - Prompt/output tokens:
@@ -16,4 +20,3 @@
 - Tests before/after:
 - Pass criteria met:
 - Notes:
-

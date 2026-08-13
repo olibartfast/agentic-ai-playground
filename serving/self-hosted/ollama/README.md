@@ -15,5 +15,5 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama run gpt-oss:20b
 ```
 
-See the relevant entry under [`integrations/`](../../integrations/) for
+See the relevant entry under [`integrations/`](../../../integrations/) for
 client-specific configuration.

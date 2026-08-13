@@ -7,5 +7,5 @@ quantization, chat template, context limit, and tool-call behavior. Begin with a
 conservative context size and one request at a time; increase context only after
 the end-to-end benchmark succeeds.
 
-Preferred serving path: [`serving/llama-cpp`](../../serving/llama-cpp/).
-
+Preferred serving path:
+[`serving/self-hosted/llama-cpp`](../../serving/self-hosted/llama-cpp/).

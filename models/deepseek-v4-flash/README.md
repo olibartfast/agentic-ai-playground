@@ -7,6 +7,6 @@ and runtime prove otherwise. Verify the official model card and serving recipe,
 then record topology and observed memory rather than relying on aggregate VRAM
 alone.
 
-Preferred serving paths: [`serving/vllm`](../../serving/vllm/) or
-[`serving/sglang`](../../serving/sglang/).
-
+Preferred serving paths:
+[`serving/self-hosted/vllm`](../../serving/self-hosted/vllm/) or
+[`serving/self-hosted/sglang`](../../serving/self-hosted/sglang/).
