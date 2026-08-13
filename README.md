@@ -3,7 +3,7 @@
 An experiment workspace for comparing coding agents, model backends, and the
 infrastructure that connects them.
 
-The repository separates five concerns so that an agent can be tested against
+The repository separates six concerns so that an agent can be tested against
 different models without changing the serving or cloud setup:
 
 ```text
@@ -17,11 +17,10 @@ model recipe -> inference server -> OpenAI-compatible API -> coding agent
 | --- | --- |
 | [`models/`](models/) | Model-specific requirements and experiment profiles |
 | [`serving/`](serving/) | llama.cpp, vLLM, SGLang, and managed API backends |
-| [`clients/`](clients/) | Coding-agent configurations such as OpenCode and Hermes |
+| [`integrations/`](integrations/) | Coding agents, IDEs, extensions, and serving-layer configurations |
 | [`cloud/`](cloud/) | Provider-neutral deployment and secure-access runbooks |
 | [`benchmarks/`](benchmarks/) | Repeatable coding, tool-calling, and inference evaluations |
 | [`experiments/`](experiments/) | Agent-framework examples and runnable prototypes |
-| [`assistants/`](assistants/) | Notes for IDEs, extensions, and coding-agent products |
 
 GPU kernel development and low-level inference optimization are intentionally
 out of scope; this repository consumes inference runtimes and evaluates agent
@@ -47,7 +46,7 @@ assumptions that must be checked before renting hardware.
 1. Pick a profile under [`models/`](models/).
 2. Start the appropriate backend from [`serving/`](serving/).
 3. Confirm `/v1/models` and `/v1/chat/completions` before involving an agent.
-4. Connect OpenCode or Hermes using [`clients/`](clients/).
+4. Connect a coding agent using [`integrations/`](integrations/).
 5. Keep a temporary remote endpoint behind an SSH tunnel.
 6. Run the scenarios in [`benchmarks/`](benchmarks/) and record configuration,
    latency, tool reliability, and cost.
@@ -55,21 +54,17 @@ assumptions that must be checked before renting hardware.
 Start with a managed API or a single-GPU model. Move to a multi-GPU node only
 after the client and benchmark loop works end to end.
 
-## Existing notes
+## Integrations and existing notes
 
-The original tool notes remain available while they are progressively folded
-into the new taxonomy:
+All coding-agent and IDE material is grouped under
+[`integrations/`](integrations/), including OpenCode, Hermes, Claude Code,
+Codex, Continue, Aider, Cursor, Google Antigravity, GitHub Copilot, ForgeCode,
+Trae, and Windsurf.
 
-- CLI agents: [Aider](aider/notes.md), [Claude Code](claude_code/),
-  [Codex](codex/), [ForgeCode](forgecode/), and
-  [GitHub Copilot](github_copilot/notes.md).
-- IDEs and extensions: [Continue](continue_dev/), [Cursor](cursor/),
-  [Google Antigravity](google_antigravity/), [Trae](trae/), and
-  [Windsurf](windsurf/).
-- Backends and providers: [llama-server](llama-server/notes.md),
-  [Ollama](ollama/notes.md), and [OpenRouter](openrouter/notes.md).
-- Protocols and examples: [A2A](a2a-protocol/) and
-  [LangGraph ReAct agent](ai-agents-langgraph/).
+Existing backend notes remain available for
+[llama-server](llama-server/notes.md), [Ollama](ollama/notes.md), and
+[OpenRouter](openrouter/notes.md). Protocol and framework examples remain under
+[A2A](a2a-protocol/) and the [LangGraph ReAct agent](ai-agents-langgraph/).
 
 ## Evaluation principles
 
