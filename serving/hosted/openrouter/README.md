@@ -1,4 +1,10 @@
-# Setting Up OpenRouter API Key
+# OpenRouter hosted inference gateway
+
+OpenRouter exposes a managed API across multiple model providers. In this
+repository it is a hosted serving backend; Continue, Copilot, and other tools
+are agent integrations that consume it.
+
+## Setting up an API key
 
 ## 1. Create an Account on OpenRouter
 

@@ -14,5 +14,4 @@ llama-server \
 ```
 
 Validate locally with `curl http://127.0.0.1:8080/v1/models`. For an existing
-Pi-agent walkthrough, see [`llama-server/notes.md`](../../llama-server/notes.md).
-
+Pi-agent walkthrough, see [`pi-agent.md`](pi-agent.md).
