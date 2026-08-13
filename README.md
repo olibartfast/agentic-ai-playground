@@ -61,10 +61,11 @@ All coding-agent and IDE material is grouped under
 Codex, Continue, Aider, Cursor, Google Antigravity, GitHub Copilot, ForgeCode,
 Trae, and Windsurf.
 
-Existing backend notes remain available for
-[llama-server](llama-server/notes.md), [Ollama](ollama/notes.md), and
-[OpenRouter](openrouter/notes.md). Protocol and framework examples remain under
-[A2A](a2a-protocol/) and the [LangGraph ReAct agent](ai-agents-langgraph/).
+Serving notes are grouped with their backends: [llama.cpp and
+llama-server](serving/llama-cpp/), [Ollama](serving/ollama/), and the hosted
+[OpenRouter gateway](serving/hosted/openrouter/). Protocol and framework
+examples remain under [A2A](a2a-protocol/) and the
+[LangGraph ReAct agent](ai-agents-langgraph/).
 
 ## Evaluation principles
 
