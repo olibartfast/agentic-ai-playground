@@ -1,105 +1,92 @@
-# AI Code Assistant Playground
+# Agentic AI Playground
 
-This repository serves as a playground and testing ground for evaluating and comparing various AI-powered code assistants.
+An experiment workspace for comparing coding agents, model backends, and the
+infrastructure that connects them.
 
-## Purpose
+The repository separates five concerns so that an agent can be tested against
+different models without changing the serving or cloud setup:
 
-* **Experiment** with AI coding tools, including IDE extensions, CLI-based assistants, and autonomous agents.
-* **Compare** cloud-based assistants (e.g., GitHub Copilot, Google AI Studio) with locally hosted models (e.g., via Ollama, Hugging Face Transformers) and agent-based tools (e.g., aider, SmolAgents).
-* **Evaluate** setup complexity, resource usage, code quality, and feature sets (e.g., completion, refactoring, task automation).
-* **Document** configurations, hardware requirements, and observations to guide developers in selecting tools.
-* **Explore** AI agents in coding, such as autonomous task execution and multi-tool integration, to highlight their role in modern workflows.
+```text
+model recipe -> inference server -> OpenAI-compatible API -> coding agent
+                                                            -> benchmark task
+```
 
-## Assistants & Agents (Front-Ends)
+## Repository map
 
-This section lists the AI code assistants and agents under evaluation, categorized by their interface (IDE plugins, CLI tools, or standalone agents). Assistants provide suggestions or completions, while agents can autonomously execute multi-step tasks.
+| Area | Purpose |
+| --- | --- |
+| [`models/`](models/) | Model-specific requirements and experiment profiles |
+| [`serving/`](serving/) | llama.cpp, vLLM, SGLang, and managed API backends |
+| [`clients/`](clients/) | Coding-agent configurations such as OpenCode and Hermes |
+| [`cloud/`](cloud/) | Provider-neutral deployment and secure-access runbooks |
+| [`benchmarks/`](benchmarks/) | Repeatable coding, tool-calling, and inference evaluations |
+| [`experiments/`](experiments/) | Agent-framework examples and runnable prototypes |
+| [`assistants/`](assistants/) | Notes for IDEs, extensions, and coding-agent products |
 
-| Tool                           | Type                  | Links                                                                                                                                                                                                 |
-| ------------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Trae**                       | IDE                   | [Notes](trae/notes.md), [Website](https://www.trae.ai/)                                                                                                                                               |
-| **Supermaven**                 | IDE Plugin            | [Notes](supermaven/notes.md), [Website](https://supermaven.com/)                                                                                                                                      |
-| **Continue.dev**               | IDE Plugin            | [Website](https://continue.dev/), [GitHub](https://github.com/continuedev/continue)                                                                                                                   |
-| **GitHub Copilot**             | IDE Plugin            | [Notes](github_copilot/notes.md), [Website](https://github.com/features/copilot)                                                                                                                      |
-| **Windsurf**                   | IDE Plugin            | [Website](https://codeium.com/)                                                                                                                                                                       |
-| **Tabnine**                    | IDE Plugin            | [Website](https://www.tabnine.com/)                                                                                                                                                                   |
-| **Amazon Q Developer**         | IDE Plugin            | [Notes](amazon_q/notes.md), [Website](https://aws.amazon.com/q/developer/)                                                                                                                            |
-| **Ampcode (Sourcegraph)**      | IDE Plugin/CLI        | [Website](https://sourcegraph.com/cody)                                                                                                                                                               |
-| **Cursor**                     | IDE                   | [Website](https://cursor.sh/)                                                                                                                                                                         |
-| **Refact.ai**                  | IDE Plugin/CLI        | [Website](https://refact.ai/), [GitHub](https://github.com/smallcloudai/refact)                                                                                                                       |
-| **DeepSeek Coder**             | IDE Plugin/API        | [GitHub](https://github.com/deepseek-ai/DeepSeek-Coder)                                                                                                                                               |
-| **Google AI Studio**           | Browser-Based IDE     | [Website](https://aistudio.google.com/), [Gemini API Docs](https://ai.google.dev/)                                                                                                                    |
-| **SmolAgents (Hugging Face)**  | CLI Agent             | [GitHub](https://github.com/huggingface/smolagents), [Course](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents)                                                |
-| **aider**                      | CLI Agent             | [Notes](aider/notes.md), [GitHub](https://github.com/Aider-AI/aider)                                                                                                                                  |
-| **OpenHands**                  | Agent                 | [GitHub](https://github.com/All-Hands-AI/OpenHands)                                                                                                                                                   |
-| **JetBrains AI Assistant**     | IDE Plugin            | [Plugin](https://plugins.jetbrains.com/plugin/22282-jetbrains-ai-assistant), [Docs](https://www.jetbrains.com/help/clion/ai-assistant-in-jetbrains-ides.html)                                         |
-| **ADK Sample Agents**          | Multi-Agent Framework | [Samples Repo](https://github.com/google/adk-samples), [Docs](https://google.github.io/adk-docs/), [Python SDK](https://github.com/google/adk-python), [Java SDK](https://github.com/google/adk-java) |
-| **Claude Code**                | CLI Agent             | [Install Guide](claude_code/install.md), [GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/examples/claude-code)                                                                   |
-| **Goose**                      | Desktop App/CLI Agent | [GitHub](https://github.com/block/goose), [Docs](https://block.github.io/goose/)                                                                                                                      |
-| **OpenCode**                   | TUI/Desktop App/CLI   | [GitHub](https://github.com/anomalyco/opencode), [Website](https://opencode.ai)                                                                                                                       |
-| **OpenClaw**                   | Personal AI Assistant | [GitHub](https://github.com/openclaw/openclaw), [Website](https://openclaw.ai)                                                                                                                        |
-| **Zed**                        | IDE                   | [Website](https://zed.dev/), [GitHub](https://github.com/zed-industries/zed)                                                                                                                          |
-| **Hermes Agent**               | CLI Agent             | [Website](https://hermes.nixos.org/)                                                                                                                                                                   |
-| **QwenCode**                   | Browser-Based IDE/Agent | [Website](https://qwen.ai/qwencode)                                                                                                                                                                  |
+GPU kernel development and low-level inference optimization are intentionally
+out of scope; this repository consumes inference runtimes and evaluates agent
+systems built on top of them.
 
+## Current model candidates
 
-**Note on Agents:**  
-AI agents like aider, OpenHands, Refact.ai's AI Agent, Hugging Face's SmolAgents, and ADK-based sample agents differ from traditional assistants by autonomously handling multi-step tasks (e.g., scaffolding a project, refactoring a codebase, or automating CI/CD pipelines). These are evaluated for their ability to execute complex workflows, integrate with tools (e.g., Git, Docker), and manage multi-file contexts.
+The initial comparison tracks four model profiles:
 
-## Local & Remote Model Backends
+- [Muse Glimmer](models/muse-glimmer/) for a single-GPU experiment.
+- [Nemotron 3.5 Lightning](models/nemotron-3.5-lightning/) pending a verified
+  public model card and serving recipe.
+- [DeepSeek V4 Flash](models/deepseek-v4-flash/) for multi-GPU or offloaded
+  inference experiments.
+- [Inkling](models/inkling/) as a large-scale serving reference rather than the
+  default development backend.
 
-These are the platforms used to run local LLMs or access remote models, enabling privacy-focused or flexible cloud-assisted coding.
+Model requirements change quickly. Each profile separates verified inputs from
+assumptions that must be checked before renting hardware.
 
-| Backend                       | Links                                                                                                      |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Ollama**                    | [ollama.com](https://ollama.com/)                                                                          |
-| **LM Studio**                 | [lmstudio.ai](https://lmstudio.ai/)                                                                        |
-| **GPT4All**                   | [gpt4all.io](https://gpt4all.io/)                                                                          |
-| **Jan**                       | [jan.ai](https://jan.ai/)                                                                                  |
-| **llama.cpp**                 | [GitHub](https://github.com/ggerganov/llama.cpp)                                                           |
-| **Refact Hosting**            | [Website](https://docs.refact.ai/guides/version-specific/self-hosted/)                                     |
-| **Hugging Face Transformers** | [Website](https://huggingface.co/docs/transformers), [GitHub](https://github.com/huggingface/transformers) |
-| **OpenRouter**                | [openrouter.ai](https://openrouter.ai), [Docs](https://openrouter.ai/docs)                                 |
-| **Mimo (Xiaomi)**             | [mimo.xiaomi.com](https://mimo.xiaomi.com/)                                                                |
-| **MiniMax**                   | [platform.minimax.io](https://platform.minimax.io/)                                                        |
-| **Z.ai**                      | [z.ai](https://z.ai/)                                                                                      |
+## Recommended experiment flow
 
+1. Pick a profile under [`models/`](models/).
+2. Start the appropriate backend from [`serving/`](serving/).
+3. Confirm `/v1/models` and `/v1/chat/completions` before involving an agent.
+4. Connect OpenCode or Hermes using [`clients/`](clients/).
+5. Keep a temporary remote endpoint behind an SSH tunnel.
+6. Run the scenarios in [`benchmarks/`](benchmarks/) and record configuration,
+   latency, tool reliability, and cost.
+
+Start with a managed API or a single-GPU model. Move to a multi-GPU node only
+after the client and benchmark loop works end to end.
+
+## Existing notes
+
+The original tool notes remain available while they are progressively folded
+into the new taxonomy:
+
+- CLI agents: [Aider](aider/notes.md), [Claude Code](claude_code/),
+  [Codex](codex/), [ForgeCode](forgecode/), and
+  [GitHub Copilot](github_copilot/notes.md).
+- IDEs and extensions: [Continue](continue_dev/), [Cursor](cursor/),
+  [Google Antigravity](google_antigravity/), [Trae](trae/), and
+  [Windsurf](windsurf/).
+- Backends and providers: [llama-server](llama-server/notes.md),
+  [Ollama](ollama/notes.md), and [OpenRouter](openrouter/notes.md).
+- Protocols and examples: [A2A](a2a-protocol/) and
+  [LangGraph ReAct agent](ai-agents-langgraph/).
+
+## Evaluation principles
+
+- Use the same repository snapshot and prompt for every model.
+- Record model revision, quantization, context limit, runtime, GPU, and flags.
+- Test tool calls independently from text quality.
+- Compare warm and cold startup separately.
+- Never expose an unauthenticated inference port to the public internet.
+- Stop cloud GPU instances when an experiment ends.
 
 ## Resources
 
-### General AI Coding
-
-* [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
-* [Ollama Getting Started](https://ollama.com/docs)
-* [Refact.ai Documentation](https://docs.refact.ai/)
-* [DeepSeek Coder Documentation](https://coder.deepseek.com/docs)
-* [Hugging Face Transformers Documentation](https://huggingface.co/docs/transformers)
-* [Google AI Studio Quickstart](https://ai.google.dev/)
-* [Gemini API Docs](https://ai.google.dev/)
-* [OpenRouter Docs](https://openrouter.ai/docs)
-
-### AI Agents
-
-* [Microsoft AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners)
-* [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/en/unit0/introduction)
-* [Building Code Agents with SmolAgents](https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents)
-* [Gemini CLI: Code and Create with an Open Source Agent](https://learn.deeplearning.ai/courses/gemini-cli-code-and-create-with-an-open-source-agent/information)
-* [NVIDIA NAT: Making Agents Reliable](https://www.deeplearning.ai/short-courses/nvidia-nat-making-agents-reliable/)
-* [Agentic AI](https://learn.deeplearning.ai/courses/agentic-ai/information)
-* [Claude Code: A Highly Agentic Coding Assistant](https://www.deeplearning.ai/short-courses/claude-code-a-highly-agentic-coding-assistant/)
-* [Design, Develop and Deploy Multi-Agent Systems with CrewAI](https://www.deeplearning.ai/courses/design-develop-and-deploy-multi-agent-systems-with-crewai/)
-* [AutoGen](https://github.com/microsoft/autogen)
-* [CrewAI](https://github.com/joaomdmoura/crewAI)
-* [LangChain Agents](https://python.langchain.com/v0.1/docs/modules/agents/)
-* [Refact.ai AI Agent Guide](https://docs.refact.ai/ai-agent/)
-* [ADK Sample Agents](https://github.com/google/adk-samples)
-
-### Spec-driven development
-* [Hugging Face Context Course](https://huggingface.co/learn/context-course/unit0/introduction)
-
-## MCP Resources
-
-- [VS Code MCP extension docs](https://code.visualstudio.com/mcp)
-- [Hugging Face MCP Course – Unit 2: Continue Client](https://huggingface.co/learn/mcp-course/en/unit2/continue-client)
-
-## Agent swarms docs
-- https://www.anthropic.com/engineering/multi-agent-research-system
+- [OpenCode](https://opencode.ai/)
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent)
+- [llama.cpp](https://github.com/ggml-org/llama.cpp)
+- [vLLM](https://docs.vllm.ai/)
+- [SGLang](https://docs.sglang.ai/)
+- [Hugging Face model hub](https://huggingface.co/models)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Agent2Agent protocol](https://a2a-protocol.org/)
