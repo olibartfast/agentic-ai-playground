@@ -1,26 +1,36 @@
 # Agentic AI Playground
 
-An experiment workspace for comparing coding agents, model backends, and the
+An experiment workspace for comparing coding agents, model sources, and the
 infrastructure that connects them.
 
 The repository separates six concerns so that an agent can be tested against
-different models without changing the serving or cloud setup:
+different models without conflating the agent, endpoint, runtime, and compute
+location:
 
 ```text
-model recipe -> inference server -> OpenAI-compatible API -> coding agent
-                                                            -> benchmark task
+coding agent -> model source/API -> model
+                    |
+                    +-> self-hosted runtime -> workstation or rented GPU
 ```
+
+Here, **self-hosted** means that you operate the model endpoint. It can run on
+your personal machine or remotely on AWS, RunPod, NVIDIA Brev, or another GPU
+provider. A loopback URL reached through an SSH tunnel does not imply that the
+model is physically local.
 
 ## Repository map
 
 | Area | Purpose |
 | --- | --- |
 | [`models/`](models/) | Model-specific requirements and experiment profiles |
-| [`serving/`](serving/) | llama.cpp, vLLM, SGLang, and managed API backends |
+| [`serving/`](serving/) | Hosted model sources and self-hosted inference runtimes |
 | [`integrations/`](integrations/) | Coding agents, IDEs, extensions, and serving-layer configurations |
-| [`cloud/`](cloud/) | Provider-neutral deployment and secure-access runbooks |
+| [`deployments/`](deployments/) | Workstation, AWS, RunPod, Brev, and secure-access runbooks |
 | [`benchmarks/`](benchmarks/) | Repeatable coding, tool-calling, and inference evaluations |
 | [`experiments/`](experiments/) | Agent-framework examples and runnable prototypes |
+
+See [Architecture and routing scenarios](docs/architecture.md) for managed,
+gateway, hybrid, and fully self-hosted examples.
 
 GPU kernel development and low-level inference optimization are intentionally
 out of scope; this repository consumes inference runtimes and evaluates agent
@@ -44,11 +54,12 @@ assumptions that must be checked before renting hardware.
 ## Recommended experiment flow
 
 1. Pick a profile under [`models/`](models/).
-2. Start the appropriate backend from [`serving/`](serving/).
-3. Confirm `/v1/models` and `/v1/chat/completions` before involving an agent.
-4. Connect a coding agent using [`integrations/`](integrations/).
-5. Keep a temporary remote endpoint behind an SSH tunnel.
-6. Run the scenarios in [`benchmarks/`](benchmarks/) and record configuration,
+2. Choose a hosted source or self-hosted runtime under [`serving/`](serving/).
+3. For self-hosting, choose compute under [`deployments/`](deployments/).
+4. Validate the endpoint's native API contract before involving an agent.
+5. Connect a coding agent using [`integrations/`](integrations/).
+6. Keep a temporary remote endpoint behind an SSH tunnel.
+7. Run the scenarios in [`benchmarks/`](benchmarks/) and record configuration,
    latency, tool reliability, and cost.
 
 Start with a managed API or a single-GPU model. Move to a multi-GPU node only
@@ -62,7 +73,8 @@ Codex, Continue, Aider, Cursor, Google Antigravity, GitHub Copilot, ForgeCode,
 Trae, and Windsurf.
 
 Serving notes are grouped with their backends: [llama.cpp and
-llama-server](serving/llama-cpp/), [Ollama](serving/ollama/), and the hosted
+llama-server](serving/self-hosted/llama-cpp/),
+[Ollama](serving/self-hosted/ollama/), and the hosted
 [OpenRouter gateway](serving/hosted/openrouter/). Protocol and framework
 examples remain under [A2A](a2a-protocol/) and the
 [LangGraph ReAct agent](ai-agents-langgraph/).
