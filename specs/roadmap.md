@@ -42,35 +42,36 @@ Exit evidence:
 - The next phase has requirements, plan, and validation documents.
 - The root README points contributors to the roadmap.
 
-## Phase 2 — Version a reproducible coding-agent benchmark
+## Phase 2 — Build the first coding-agent test suite
 
 Status: **Next**
 
-Outcome: the benchmark sequence becomes an executable, versioned contract with
-clean fixtures, fixed prompts, explicit permissions, mechanical validators, and
-a human rubric only where automation cannot decide the result.
+Outcome: add `benchmarks/coding-agent-v1/` with six named tasks, a small Python
+sample project, fixed prompts, setup scripts, result checkers, and clear scoring
+instructions.
 
-Why now: the repository already lists candidate models, runtimes, providers,
-and agents, but it cannot yet demonstrate a comparable end-to-end result. More
-catalog growth before a stable task contract would multiply unverified paths.
+Why now: `benchmarks/README.md` lists six activities, but the repository does
+not yet provide the prompts, sample project, setup commands, or pass/fail checks
+needed to run them consistently. Adding more model instructions first would
+produce results that cannot be compared fairly.
 
 Feature packet:
-[`2026-08-15-reproducible-benchmark-baseline/`](2026-08-15-reproducible-benchmark-baseline/)
+[`2026-08-15-coding-agent-test-suite/`](2026-08-15-coding-agent-test-suite/)
 
 Exit evidence:
 
-- A contributor can prepare every task from immutable versioned inputs.
-- Pack self-tests detect fixture or validator drift without calling a model API.
-- Each scenario declares machine-checkable and human-reviewed pass criteria.
-- The result template identifies the benchmark pack and scenario outcomes.
-- One documented dry run proves the instructions and reset path.
+- Six exact prompts and five clean starting projects are checked in.
+- The setup script creates a disposable task copy without overwriting inputs.
+- Every coding-task checker is tested against wrong and correct results.
+- The result template records the suite version and each task's outcome.
+- One documented offline dry run proves the setup and checking commands.
 
-## Phase 3 — Record one managed end-to-end baseline
+## Phase 3 — Run the suite once with a hosted model
 
 Status: **Planned**
 
-Outcome: one coding agent completes the versioned benchmark through a managed
-vendor API or hosted gateway, producing the first complete result record.
+Outcome: connect one named coding agent to a vendor API or hosted gateway, run
+all six tasks, and commit the first complete result record.
 
 Exit evidence:
 
@@ -80,12 +81,12 @@ Exit evidence:
   recorded using the fixed benchmark version.
 - No secret is present in committed files or logs.
 
-## Phase 4 — Record one single-GPU self-hosted baseline
+## Phase 4 — Run the suite once on a self-hosted GPU
 
 Status: **Planned**
 
-Outcome: a verified quantized model served with a user-operated runtime runs the
-same benchmark on one affordable GPU, without changing the task contract.
+Outcome: serve one verified quantized model on a single affordable GPU and run
+the same six tasks without changing their prompts or checks.
 
 Exit evidence:
 
@@ -96,12 +97,12 @@ Exit evidence:
 - The endpoint is private, and any remote path uses the documented tunnel.
 - Results are compared with Phase 3 only on the fixed benchmark dimensions.
 
-## Phase 5 — Compare agent integrations against a fixed source
+## Phase 5 — Compare two coding agents on the same model
 
 Status: **Planned**
 
-Outcome: at least two agents run the same benchmark against the same model
-source so client/tooling behavior can be separated from model behavior.
+Outcome: run the suite with two coding agents while keeping the model, endpoint,
+prompts, permissions, and scoring unchanged.
 
 Exit evidence:
 
@@ -110,12 +111,12 @@ Exit evidence:
 - The comparison fixes source, model, benchmark, fixture, prompt, permissions,
   and scoring while recording agent/version differences.
 
-## Phase 6 — Evaluate hybrid and scale-out routing
+## Phase 6 — Test multi-GPU or main/subagent routing
 
 Status: **Discovery**
 
-Outcome: multi-GPU or hybrid main-agent/subagent paths are evaluated only where
-the earlier baselines show a concrete capability or cost reason to do so.
+Outcome: test a larger multi-GPU model or separate main-agent/subagent models
+only when an earlier result shows why the extra complexity may help.
 
 Entry conditions:
 
@@ -124,12 +125,12 @@ Entry conditions:
 - The fixed benchmark exposes a limitation that the larger or hybrid path is
   intended to address.
 
-## Phase 7 — Modernize selected framework prototypes
+## Phase 7 — Update one legacy Python agent example
 
 Status: **Discovery**
 
-Outcome: an existing LangGraph or A2A example is promoted into `experiments/`
-only if it supports a measured benchmark or routing question.
+Outcome: move either the LangGraph or A2A example into `experiments/`, update its
+dependencies and safety, and connect it to a specific measured question.
 
 Entry conditions:
 
