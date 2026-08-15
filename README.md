@@ -32,6 +32,11 @@ model is physically local.
 See [Architecture and routing scenarios](docs/architecture.md) for managed,
 gateway, hybrid, and fully self-hosted examples.
 
+Project intent, technical boundaries, delivery order, and active feature
+contracts live under [`specs/`](specs/). Start with the
+[roadmap](specs/roadmap.md) before adding another model, runtime, integration,
+or deployment recipe.
+
 GPU kernel development and low-level inference optimization are intentionally
 out of scope; this repository consumes inference runtimes and evaluates agent
 systems built on top of them.
