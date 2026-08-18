@@ -12,6 +12,7 @@ through their vendor or an authorized gateway.
 | Profile | Intended first deployment | Status |
 | --- | --- | --- |
 | [Muse Glimmer](muse-glimmer/) | Quantized, single GPU | Candidate |
+| [Qwen3.8 27B](qwen3.8-27b/) | Quantized single GPU or FP8 | Candidate |
 | [Nemotron 3.5 Lightning](nemotron-3.5-lightning/) | To be determined | Awaiting verification |
 | [DeepSeek V4 Flash](deepseek-v4-flash/) | Multi-GPU or CPU offload | Candidate |
 | [Inkling](inkling/) | High-end multi-GPU | Reference |
