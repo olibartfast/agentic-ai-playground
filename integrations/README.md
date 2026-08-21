@@ -10,7 +10,9 @@ not currently available.
 | Integration | Surface | Self-hosted endpoint path |
 | --- | --- | --- |
 | [OpenCode](opencode/) | CLI, TUI, desktop | OpenAI-compatible API |
-| [Hermes Agent](hermes/) | CLI agent | OpenAI-compatible API |
+| [Pi Agent](pi/) | CLI agent | OpenAI-compatible API |
+| [Hermes Agent](hermes/) | CLI agent | OpenAI-compatible API, 64K context floor |
+| [Kilo Code](kilocode/) | CLI, TUI | OpenAI-compatible API |
 | [Claude Code](claude-code/) | CLI agent | Anthropic Messages API or proxy |
 | [Codex](codex/) | CLI agent | Responses API, OSS provider, or proxy |
 | [Continue](continue/) | IDE extension | Native provider configuration |
