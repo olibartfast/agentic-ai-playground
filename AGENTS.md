@@ -8,10 +8,8 @@ backends in `serving/`, agent/IDE configuration in `integrations/`, and compute
 runbooks in `deployments/`. Reproducible tasks and result records belong in
 `benchmarks/`; runnable framework prototypes belong in `experiments/`.
 
-`docs/architecture.md` defines the routing model. The existing
-`ai-agents-langgraph/` and `a2a-protocol/` directories contain legacy Python
-examples pending modernization. Project intent and active work contracts live
-in `specs/`.
+`docs/architecture.md` defines the routing model. Project intent and active
+work contracts live in `specs/`.
 
 ## Spec-Driven Changes
 
@@ -28,11 +26,12 @@ There is no root build system or universal test command. Use the narrowest
 checks relevant to the files changed:
 
 - `git diff --check` — detect whitespace errors before committing.
-- `python3 -m py_compile ai-agents-langgraph/react_agent.py` — syntax-check the
-  legacy ReAct example without invoking an API.
+- `python3 -m py_compile <file>` — syntax-check a Python prototype without
+  invoking an API.
 - `python3 -m venv .venv` followed by
-  `.venv/bin/pip install -r ai-agents-langgraph/requirements.txt` — prepare that
-  prototype's isolated environment.
+  `.venv/bin/pip install -r <requirements.txt>` — prepare a prototype's
+  isolated environment. Pin dependencies and keep them current; an unmaintained
+  pinned tree accumulates advisories whether or not the code is ever run.
 
 Document and run exact focused checks in each feature's `validation.md`. Do not
 claim network, model, or hardware validation from static inspection alone.

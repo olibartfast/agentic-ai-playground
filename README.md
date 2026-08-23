@@ -80,9 +80,7 @@ Antigravity, GitHub Copilot, ForgeCode, Trae, and Windsurf.
 Serving notes are grouped with their backends: [llama.cpp and
 llama-server](serving/self-hosted/llama-cpp/),
 [Ollama](serving/self-hosted/ollama/), and the hosted
-[OpenRouter gateway](serving/hosted/openrouter/). Protocol and framework
-examples remain under [A2A](a2a-protocol/) and the
-[LangGraph ReAct agent](ai-agents-langgraph/).
+[OpenRouter gateway](serving/hosted/openrouter/).
 
 ## Evaluation principles
 
