@@ -1,6 +1,6 @@
 # llama-server + Pi Agent
 
-Local or cloud-hosted LLM inference via an OpenAI-compatible API, connected to the [Pi coding agent](https://github.com/mariozechner/pi-coding-agent).
+Local or cloud-hosted LLM inference via an OpenAI-compatible API, connected to the [Pi coding agent](https://github.com/earendil-works/pi).
 
 Reference: [HuggingFace – Local Agents with llama.cpp](https://huggingface.co/docs/hub/agents-local#local-agents-with-llamacpp)
 
@@ -9,8 +9,10 @@ Reference: [HuggingFace – Local Agents with llama.cpp](https://huggingface.co/
 ## 1. Install Pi
 
 ```bash
-npm install -g @mariozechner/pi-coding-agent
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 ```
+
+The older `@mariozechner/pi-coding-agent` package is deprecated on npm and its GitHub URL now returns 404. See [`integrations/pi/`](../../../integrations/pi/) for the version note.
 
 ---
 
