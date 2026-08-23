@@ -14,6 +14,7 @@ not currently available.
 | [Hermes Agent](hermes/) | CLI agent | OpenAI-compatible API, 64K context floor |
 | [Kilo Code](kilocode/) | CLI, TUI | OpenAI-compatible API |
 | [DeepSeek Harness](dsh/) | CLI agent, Web UI | OpenAI-compatible custom provider |
+| [Oh My Pi](omp/) | CLI agent, TUI, SDK, ACP | OpenAI-compatible API, local auth tag |
 | [Claude Code](claude-code/) | CLI agent | Anthropic Messages API or proxy |
 | [Codex](codex/) | CLI agent | Responses API, OSS provider, or proxy |
 | [Continue](continue/) | IDE extension | Native provider configuration |
