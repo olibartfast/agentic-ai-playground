@@ -1,0 +1,66 @@
+# Example Oh My Pi custom-provider routes.
+#
+# Merge into ~/.omp/agent/models.yml. Providers merge by key, so adding a
+# block leaves existing ones intact. Never commit a literal key: apiKey
+# accepts an environment-variable reference, and local backends carry the
+# `local` auth tag, which makes the key optional entirely.
+#
+# Unverified against a running endpoint. See README.md before use.
+
+providers:
+  # Self-hosted llama-server reached over loopback, directly or through the
+  # SSH tunnel in deployments/. llama.cpp is a first-class local backend, so
+  # discovery can synthesise the model entry instead of declaring it.
+  local:
+    baseUrl: http://127.0.0.1:8080/v1
+    api: openai-completions
+    apiKey: $MODEL_API_KEY
+    discovery:
+      type: llama.cpp
+      timeoutMs: 10000
+    models:
+      # The id must equal what GET /models returns: llama.cpp's --alias.
+      - id: gemma-4-e4b
+        name: Gemma 4 E4B
+        # Declare both rather than inheriting a catalog guess. Set these to
+        # the --ctx-size the server was actually started with.
+        contextWindow: 32768
+        maxTokens: 4096
+        cost:
+          input: 0
+          output: 0
+          cacheRead: 0
+          cacheWrite: 0
+
+  # Ollama on the same machine. Ollama discovery uses the native /api/tags
+  # and /api/show endpoints, not the OpenAI /v1/models route, so it reads the
+  # served window instead of a card value.
+  ollama:
+    baseUrl: http://127.0.0.1:11434/v1
+    api: openai-completions
+    apiKey: ollama
+    discovery:
+      type: ollama
+    models:
+      # Ollama's tagged name, for example qwen2.5-coder:7b, not the bare
+      # model name.
+      - id: qwen2.5-coder:7b
+        contextWindow: 32768
+
+  # A private OpenAI-compatible gateway that is not one of the recognised
+  # local backends. Nothing about the URL tells the client what the server
+  # accepts, so state it. Each of these is a claim about the endpoint, not a
+  # check of it — see the compat table in README.md.
+  gateway:
+    baseUrl: https://gateway.example.internal/v1
+    api: openai-completions
+    apiKey: $GATEWAY_API_KEY
+    authHeader: true
+    models:
+      - id: REPLACE_WITH_ID_FROM_V1_MODELS
+        contextWindow: 32768
+        maxTokens: 4096
+        compat:
+          maxTokensField: max_tokens
+          supportsDeveloperRole: false
+          supportsStore: false

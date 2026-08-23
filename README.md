@@ -73,9 +73,9 @@ after the client and benchmark loop works end to end.
 ## Integrations and existing notes
 
 All coding-agent and IDE material is grouped under
-[`integrations/`](integrations/), including OpenCode, Hermes, DeepSeek
-Harness, Claude Code, Codex, Continue, Aider, Cursor, Google Antigravity,
-GitHub Copilot, ForgeCode, Trae, and Windsurf.
+[`integrations/`](integrations/), including OpenCode, Pi, Oh My Pi, Hermes,
+DeepSeek Harness, Claude Code, Codex, Continue, Aider, Cursor, Google
+Antigravity, GitHub Copilot, ForgeCode, Trae, and Windsurf.
 
 Serving notes are grouped with their backends: [llama.cpp and
 llama-server](serving/self-hosted/llama-cpp/),
@@ -98,6 +98,8 @@ examples remain under [A2A](a2a-protocol/) and the
 - [OpenCode](https://opencode.ai/)
 - [Hermes Agent](https://github.com/NousResearch/hermes-agent)
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+- [Pi](https://github.com/earendil-works/pi)
+- [Oh My Pi](https://github.com/can1357/oh-my-pi)
 - [llama.cpp](https://github.com/ggml-org/llama.cpp)
 - [vLLM](https://docs.vllm.ai/)
 - [SGLang](https://docs.sglang.ai/)
