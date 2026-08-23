@@ -6,3 +6,8 @@ quantization, and measured memory use.
 
 Bind the endpoint to loopback unless another machine must connect. If LAN access
 is required, add authentication and restrict it with the host firewall.
+
+## Worked examples
+
+- [Ryzen 7 5700U, CPU-only](ryzen-5700u-cpu-only.md) — llama.cpp built from
+  source, no GPU, connected to OpenCode.

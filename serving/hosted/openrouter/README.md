@@ -4,6 +4,10 @@ OpenRouter exposes a managed API across multiple model providers. In this
 repository it is a hosted serving backend; Continue, Copilot, and other tools
 are agent integrations that consume it.
 
+Per-token list prices for the frontier models reached through this gateway are
+tabulated in [`models/README.md`](../../../models/README.md#costs), alongside
+Meta's direct pricing for Muse Spark.
+
 ## Setting up an API key
 
 ## 1. Create an Account on OpenRouter
