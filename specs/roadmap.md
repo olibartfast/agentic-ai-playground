@@ -35,6 +35,55 @@ What the evidence established:
   [`benchmarks/coding-agent-v1/`](../benchmarks/) does not exist yet. Phase 2
   remains the blocking work.
 
+## Host note, 2026-08-23
+
+The Phase 4 target host was profiled directly. No model was served and nothing
+below is measured throughput; this is a hardware and fit record that narrows
+Phase 4 before any run.
+
+| Property | Value |
+| --- | --- |
+| CPU | Intel i5-11400H, 6 cores / 12 threads, Tiger Lake-H |
+| Vector ISA | AVX-512 with VNNI; no AMX, no `avx512_bf16` |
+| GPU | RTX 3060 Laptop, 6 GB GDDR6, ~336 GB/s, 80 W TGP, sm_86 |
+| VRAM free | 5.37 GB; 439 MB held by Xorg, `gnome-remote-desktop`, and a `neuriplo-kserve-runtime` |
+| RAM | 38 GB total, 33 GB available. Speed unverified; DDR4-3200 assumed |
+| Swap | 37 GB |
+| Disk | 324 GB free |
+| Stack | Ubuntu 24.04, driver 580.173 (CUDA 13 capable), `nvcc` 12.0 |
+| Already local | 31 GB of Ollama blobs: `qwen3-coder:30b` Q4_K_M (18 GB), `gpt-oss:20b` MXFP4 (13 GB) |
+
+Three consequences for the plan:
+
+- **This host has two regimes, not one.** Full GPU offload is bounded by
+  ~5.2 GB of model plus KV, which is the Gemma 4 E4B QAT slot the roadmap
+  already named. Separately, 33 GB of available RAM makes MoE hybrid offload
+  viable — expert tensors in RAM via llama.cpp `--n-cpu-moe`, attention,
+  embeddings, and KV on the GPU — where decode cost scales with *active*
+  parameters rather than total. `qwen3-coder:30b` is 30.5B total at ~3.3B
+  active and is already on disk. This is the regime the Ryzen host structurally
+  could not enter, and it is unmeasured.
+- **The prompt-size finding gets its intervention here.** GPU prefill for a
+  4B-class model is expected in the 1,000-2,000 tok/s range against the Ryzen
+  host's ~49 tok/s. OpenCode's 7,876-token cold start would fall from 161 s to
+  seconds. If the prompt-heavy agents become usable on identical weights and
+  task, the finding is confirmed as a CPU-only artifact rather than a property
+  of those agents. Estimated, not measured — that measurement *is* the Phase 4
+  and 5 work.
+- **`ollama show qwen3-coder:30b` lists `completion` only, without `tools`.**
+  Per the Qwen2.5-Coder record that flag reflects the bundled template rather
+  than the weights, but here it means Ollama's template for this tag will not
+  produce tool calls at all. Serve the blob through `llama-server --jinja`, as
+  the Ryzen runbook does, and screen tool-call capability before wiring an
+  agent. `gpt-oss:20b` does advertise `tools` and `thinking`.
+
+Backend selection is unchanged from the Ryzen host, for changed reasons. vLLM
+and SGLang remain unusable: 6 GB of VRAM does not hold an unquantized 7B, and
+while AVX-512 with VNNI means the vLLM CPU backend would now *build*, the
+absence of AMX and `avx512_bf16` leaves it behind llama.cpp. llama.cpp is not
+yet built on this host and needs `-DGGML_CUDA=ON`, which the Ryzen runbook's
+CMake line omits.
+
 ## Status Legend
 
 - **Complete**: declared evidence exists in the repository.
@@ -116,18 +165,34 @@ Status: **Planned**
 Outcome: serve one verified quantized model on a single affordable GPU and run
 the same six tasks without changing their prompts or checks.
 
-First target: an owned laptop RTX 3060 with 6 GB VRAM, before any rented
-compute — the smaller slice that answers the same question. It holds Gemma 4
-E4B QAT (4.22 GB) with room for a modest KV cache; it does not hold Gemma 4 12B
-(6.72 GB) without partial offload, and 26B A4B (14.25 GB) is out of reach.
-Budget context upward from a low `--ctx-size` rather than assuming the CPU
-host's value, and account for VRAM the desktop session already holds.
+First target: the owned i5-11400H laptop with an RTX 3060 6 GB, profiled in
+the host note above, before any rented compute — the smaller slice that answers
+the same question. Budget context upward from a low `--ctx-size` rather than
+assuming the CPU host's value, and subtract the 439 MB the desktop session
+already holds.
+
+Run it as two ordered regimes rather than one:
+
+1. **Full GPU offload**, bounded by ~5.2 GB of model plus KV. Gemma 4 E4B QAT
+   (4.22 GB) is the pick, because it is the only checkpoint with a measured
+   CPU-host baseline to compare against. Gemma 4 12B (6.72 GB) does not fit
+   without partial offload.
+2. **MoE hybrid offload**, experts in RAM via `--n-cpu-moe` with attention and
+   KV on the GPU. `qwen3-coder:30b` (18 GB on disk, ~3.3B active) and
+   `gpt-oss:20b` (13 GB, ~3.6B active) are both already local, so this regime
+   costs no download and no rental.
+
+**Correction to the 2026-08-21 plan.** That text called 26B A4B "out of reach"
+and sized every candidate against VRAM alone. That was correct for the 14.5 GB
+Ryzen host and is wrong here: with 33 GB of available RAM, total checkpoint size
+stops being the binding constraint for MoE models and active-parameter count
+takes over. Rented compute stays reserved for checkpoints that neither regime
+holds — which is a smaller set than previously assumed.
 
 That host also serves as the controlled intervention for the prompt-size
 finding above: same model, same agents, same task, prefill faster by orders of
 magnitude. If the prompt-heavy agents become usable there, the finding is
-confirmed by intervention rather than by correlation across one host. Rented
-compute stays reserved for checkpoints that do not fit locally.
+confirmed by intervention rather than by correlation across one host.
 
 Exit evidence:
 
@@ -135,6 +200,9 @@ Exit evidence:
   and tool-call behavior are verified from current sources.
 - Runtime version, flags, GPU, VRAM, RAM, observed memory, cold start, and
   throughput are recorded.
+- The offload regime is named, and full-offload and MoE-hybrid runs are recorded
+  as separate results. They differ in what bounds them and are not comparable to
+  each other.
 - The endpoint is private, and any remote path uses the documented tunnel.
 - Results are compared with Phase 3 only on the fixed benchmark dimensions.
 
