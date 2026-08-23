@@ -11,3 +11,6 @@ is required, add authentication and restrict it with the host firewall.
 
 - [Ryzen 7 5700U, CPU-only](ryzen-5700u-cpu-only.md) — llama.cpp built from
   source, no GPU, connected to OpenCode.
+- [Intel i5-11400H + RTX 3060 Laptop](i5-11400h-rtx3060.md) — llama.cpp with
+  CUDA, via both a source build and the upstream Docker image, running a
+  30B MoE with expert tensors offloaded to system RAM.
