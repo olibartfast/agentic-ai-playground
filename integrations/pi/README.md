@@ -1,7 +1,7 @@
 # Pi Agent
 
-[Pi](https://github.com/mariozechner/pi-coding-agent) is a CLI coding agent
-with built-in `read`, `bash`, `edit`, and `write` tools. It reads provider
+[Pi](https://github.com/earendil-works/pi) is a CLI coding agent with
+built-in `read`, `bash`, `edit`, and `write` tools. It reads provider
 definitions from `~/.pi/agent/models.json` and speaks the OpenAI completions
 API, so any runtime in [`serving/self-hosted/`](../../serving/self-hosted/) can
 back it.
@@ -14,9 +14,16 @@ options, see the [llama.cpp Pi walkthrough][llama-cpp-pi].
 ## 1. Install
 
 ```bash
-npm install -g @mariozechner/pi-coding-agent
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 pi --version
 ```
+
+Pi moved organisation: `@mariozechner/pi-coding-agent` is deprecated on npm
+("please use @earendil-works/pi-coding-agent instead going forward"), last
+published `0.73.1` on 2026-05-07, and `github.com/mariozechner/pi-coding-agent`
+now returns 404. The measurements recorded on this page were taken against the
+`0.73.x` line under the old package name; the current line is `0.84.x` and has
+not been re-measured here.
 
 ## 2. Serve a model with Ollama
 
