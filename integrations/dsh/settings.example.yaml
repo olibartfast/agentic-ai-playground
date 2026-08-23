@@ -1,0 +1,46 @@
+# Example DeepSeek Harness custom-provider route.
+#
+# Merge into $DSH_HOME/settings.yaml. Providers merge by key, so adding a
+# block leaves existing ones intact. Never commit a literal key: apiKeyEnv
+# names an environment variable, and the Web UI stores entered keys in
+# $DSH_HOME/.credentials.yaml instead.
+#
+# Unverified against a running endpoint. See README.md before use.
+
+llm-pi-ai:
+  providers:
+    # Self-hosted llama-server or vLLM reached over loopback, directly or
+    # through the SSH tunnel in deployments/.
+    local:
+      apiKeyEnv: MODEL_API_KEY
+      api: openai-completions
+      baseURL: http://127.0.0.1:8080/v1
+      # A hand-declared model otherwise inherits a 262,144-token route
+      # default. Set this to the server's --ctx-size.
+      defaultContextWindow: 32768
+      # Start here when a reachable endpoint refuses every request. Both
+      # state a claim about the server rather than checking it.
+      compat:
+        supportsDeveloperRole: false
+        maxTokensField: max_tokens
+      models:
+        # Must equal what GET /models returns: llama.cpp's --alias, or
+        # Ollama's tagged name such as qwen2.5-coder:7b.
+        - id: gemma-4-e4b
+
+    # Ollama on the same machine, which serves an OpenAI-compatible API on
+    # port 11434 whenever the daemon runs. The key is required by the client
+    # and ignored by Ollama.
+    ollama:
+      apiKeyEnv: MODEL_API_KEY
+      api: openai-completions
+      baseURL: http://127.0.0.1:11434/v1
+      models:
+        # Read the served window from `ollama show <model>`, not the card.
+        - id: qwen2.5-coder:7b
+          contextWindow: 32768
+
+# The provider/model a new session starts from.
+agent-default-model:
+  provider: local
+  model: gemma-4-e4b
