@@ -13,6 +13,7 @@ not currently available.
 | [Pi Agent](pi/) | CLI agent | OpenAI-compatible API |
 | [Hermes Agent](hermes/) | CLI agent | OpenAI-compatible API, 64K context floor |
 | [Kilo Code](kilocode/) | CLI, TUI | OpenAI-compatible API |
+| [DeepSeek Harness](dsh/) | CLI agent, Web UI | OpenAI-compatible custom provider |
 | [Claude Code](claude-code/) | CLI agent | Anthropic Messages API or proxy |
 | [Codex](codex/) | CLI agent | Responses API, OSS provider, or proxy |
 | [Continue](continue/) | IDE extension | Native provider configuration |
