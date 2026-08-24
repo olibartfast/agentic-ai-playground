@@ -33,6 +33,51 @@ Use `key_env: "SOME_VAR"` instead of `api_key` for any endpoint that is not on
 loopback. The literal value above is acceptable only because Ollama ignores the
 Authorization header and the endpoint is bound to `127.0.0.1`.
 
+## Version note: `custom:<name>` no longer selects a provider
+
+The `--provider custom:<name>` form below was measured against an earlier
+Hermes. On **0.10.0** the CLI moved to subcommands (`hermes chat`), and
+`--provider` became a fixed enum of built-in providers with no `custom:` form.
+`-m local/qwen3-coder-30b` does **not** reach a `providers:` entry either — the
+whole string is sent as a model name to whatever provider is currently default:
+
+```text
+HTTP 400: The supported API model names are deepseek-v4-pro, ... but you
+passed local/qwen3-coder-30b.
+```
+
+On 0.10.0, routing comes from the `model:` block rather than a per-run flag.
+Because that block is global, changing it in place would repoint the default
+away from whatever hosted provider is configured. Use a **profile** instead —
+an isolated Hermes home with its own `config.yaml`:
+
+```bash
+hermes profile create llamacpp --clone
+```
+
+Then set that profile's `model:` block to the local endpoint, leaving the
+default profile untouched:
+
+```yaml
+model:
+  default: qwen3-coder-30b
+  provider: local
+  base_url: http://127.0.0.1:8080/v1
+```
+
+`hermes profile create` writes a wrapper script into `~/.local/bin` named after
+the profile, so the profile is selected by invoking it:
+
+```bash
+llamacpp chat -q "Reply with exactly the word: ready"
+```
+
+**Do not name the profile `local`.** `local` is a bash builtin and takes
+precedence over `$PATH`, so the generated wrapper is unreachable from an
+interactive shell — `local chat` fails with *"can only be used in a function"*.
+Rename with `hermes profile rename local llamacpp` if it has already been
+created.
+
 ## Local llama-server
 
 A second custom provider for llama.cpp, alongside the `ollama` entry:
