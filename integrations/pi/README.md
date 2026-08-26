@@ -115,6 +115,24 @@ whatever `--ctx-size` was passed.
 
 [gemma-serve]: ../../deployments/workstation/ryzen-5700u-cpu-only.md#variant-gemma-4-e4b-qat-with-mtp
 
+## Version note: the 1,370-token figure is stale
+
+The prompt sizes quoted on this page and in the Ryzen records were measured on
+Pi **0.84.2**. On **0.84.3** the same trivial prompt ships **4,953 tokens** —
+3.6x larger — measured against a local GPU endpoint in the
+[2026-08-26 record][agents-2026-08-26].
+
+Pi remains the cheapest client in this repository to cold-start, by a wide
+margin over OpenCode (10,369), Kilo (15,588), and Hermes (21,936). The claim
+that it is *narrower* rather than better engineered is unaffected. Only the
+absolute number moved, and it moved enough that reproducing the Ryzen result on
+current Pi should budget roughly 3.6x the prefill that record describes.
+
+That measurement did not isolate version from host, so treat 4,953 as "current
+Pi on this host" rather than as a property of 0.84.3 everywhere.
+
+[agents-2026-08-26]: ../../benchmarks/2026-08-26-agent-client-prompt-sizes/result.md
+
 ## Tool-calling check
 
 Transport working is not the same as the agent loop working. Confirm the model
