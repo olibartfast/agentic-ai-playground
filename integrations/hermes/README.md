@@ -33,10 +33,38 @@ Use `key_env: "SOME_VAR"` instead of `api_key` for any endpoint that is not on
 loopback. The literal value above is acceptable only because Ollama ignores the
 Authorization header and the endpoint is bound to `127.0.0.1`.
 
-## Version note: `custom:<name>` no longer selects a provider
+## Version note: `--provider` has changed shape three times
 
-The `--provider custom:<name>` form below was measured against an earlier
-Hermes. On **0.10.0** the CLI moved to subcommands (`hermes chat`), and
+Check `hermes chat --help` against the installed build before copying any
+command from this page. The flag has taken three incompatible forms:
+
+| Version | Form | Local endpoint reachable by |
+| --- | --- | --- |
+| pre-0.10 | `--provider custom:<name>` | the flag |
+| 0.10.0 | fixed enum, no custom form | a profile only |
+| 0.20.5 | built-in **or** a user-defined name from `providers:` | the flag again |
+
+On **0.20.5** the local endpoint is selected directly, which is the simplest
+route and leaves the configured default untouched:
+
+```bash
+hermes chat -q "Reply with exactly the word: ready" \
+  --provider local -m qwen3-coder-30b
+```
+
+Measured on this build: 21,936 prompt tokens, 113 s of prefill against a local
+GPU endpoint — see the [2026-08-26 record][agents-2026-08-26]. That is 66% more
+than 0.10.0 shipped, so re-measure rather than reusing an older figure.
+
+[agents-2026-08-26]: ../../benchmarks/2026-08-26-agent-client-prompt-sizes/result.md
+
+### The 0.10.0 profile workaround
+
+Kept because it still works, and because an isolated history, `.env`, or
+SOUL.md is sometimes wanted for a local model. It is no longer *required*
+merely to reach a local endpoint.
+
+On **0.10.0** the CLI moved to subcommands (`hermes chat`), and
 `--provider` became a fixed enum of built-in providers with no `custom:` form.
 `-m local/qwen3-coder-30b` does **not** reach a `providers:` entry either — the
 whole string is sent as a model name to whatever provider is currently default:
