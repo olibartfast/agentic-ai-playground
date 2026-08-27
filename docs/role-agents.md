@@ -80,6 +80,11 @@ the system prompt as the body. This repository's set is in
 1. Create the worker with a deny-by-default permission block. The allowlist is
    the point: a rule that permits everything except the specs still leaves the
    worker free to edit the manifest, the presets, and the acceptance suite.
+   Deny `task` as well — a worker that can delegate to an unrestricted built-in
+   agent inherits its tools and voids every other line. And never allow a
+   command that executes code the worker itself can write: permitting a test
+   runner over a directory the worker may edit is the same hole wearing a
+   different name.
 
    ```markdown
    <!-- .opencode/agent/implementer.md -->
@@ -91,11 +96,11 @@ the system prompt as the body. This repository's set is in
    permission:
      edit:
        "*": deny
-       "experiments/**": allow
+       "<the packet's paths, regenerated per phase>": allow
      bash:
        "*": deny
        "python3 -m py_compile *": allow
-       "python3 -m unittest discover *": allow
+     task: deny
      glob: deny
      webfetch: deny
      websearch: deny
@@ -146,6 +151,26 @@ worker could complete it.
 Do not maximise the served context window. A larger window on a small model
 invites the oversized sessions that make small models fail; keep the worker's
 context modest and control size through the packet.
+
+### The local worker differs by one line
+
+[`implementer-local.md`](../.opencode/agent/implementer-local.md) is
+byte-identical to `implementer.md` except for `model:` and `description:`. That
+is deliberate and worth protecting: a local-versus-hosted comparison in which
+the two workers also carry different briefs measures the prompts, not the
+models. Endpoint-specific cautions belong here, not in the worker's body.
+
+On this machine: `llama.cpp/gemma-4-26b-4b-it` is the LAN llama-server and the
+practical worker; `local/gemma-4-e4b` is the laptop CPU endpoint, where
+OpenCode's 7,876-token system prompt costs roughly 161 s of prefill per cold
+start, so prefer the TUI and its slot cache; `ollama/qwen2.5-coder:7b` is
+reachable but measured unable to emit the tool-call wrapper, so it is not a
+working agent loop. Kilo lists neither OpenRouter nor the LAN llama.cpp
+provider, so its local option is `local/gemma-4-e4b`.
+
+Keep the served context window modest on purpose. A larger window on a small
+model invites exactly the oversized sessions that make small models fail;
+control size through the packet instead.
 
 ## Kilo Code
 
@@ -230,11 +255,18 @@ default-effort one tells you about the setting rather than the model.
 Because there is no per-agent step cap, the parent workflow has to terminate the
 child: one phase, one scoreboard run, and an explicit check that it returned.
 
-All four roles are committed as agent files. The article shows the planner tier
-in `~/.codex/config.toml` instead, which is the same choice expressed as
-user-level configuration; a file under `.codex/agents/` keeps it reviewable
-with the rest of the set, and `config.toml` still sets the default for a
-session started without a role.
+All four roles are committed as agent files, but they are not equivalent to the
+article's `config.toml` planner and should not be read as such. Files under
+`.codex/agents/` define agents the primary session may **spawn**; the installed
+CLI has no flag that starts a session *as* one. A session therefore begins on
+the `config.toml` model and spawns `architect` or `planner` as a child, which
+adds a parent turn and its tokens to every run.
+
+Set the tier you want to start on in `~/.codex/config.toml`, as above, and
+treat the architect and planner files as reviewable records of what those roles
+are — not as the mechanism that selects them. When comparing runs across
+harnesses, count that extra parent: it is the kind of difference that shows up
+as cost without showing up in the diff.
 
 Reaching a local endpoint is a provider selection — `model_provider`, per
 [`integrations/codex/open-models.md`](../integrations/codex/open-models.md) —

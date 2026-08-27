@@ -110,11 +110,13 @@ VS Code only displays the result:
 | Pi Agent | — | `~/.pi/agent/models.json` |
 | Hermes Agent | — | `~/.hermes/config.yaml` |
 
-Two consequences worth stating plainly. Switching a role from a hosted model to
-a self-hosted one is still a one-line edit in the agent's own config, and the
-picker in VS Code reflects it on the next connection — the editor is not part
-of that decision. And an agent whose roles are not file-backed (Pi, Hermes)
-exposes no mode list here, so its delegation boundary stays in the prompt.
+Two consequences worth stating plainly. The role list in the panel is read from
+the agent, so a role added to a project file appears there on the next
+connection — but its **model does not follow it**, which is measured in
+[the section below](#the-mode-picker-does-not-carry-the-roles-model); do not
+assume a one-line `model:` edit changes what actually serves the session. And
+an agent whose roles are not file-backed (Pi, Hermes) exposes no mode list
+here, so its delegation boundary stays in the prompt.
 
 Project-scoped role files only load when the connected agent's working
 directory is that project. `acp.defaultWorkingDirectory` overrides the

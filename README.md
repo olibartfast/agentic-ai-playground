@@ -27,6 +27,7 @@ model is physically local.
 | [`integrations/`](integrations/) | Coding agents, IDEs, extensions, and serving-layer configurations |
 | [`deployments/`](deployments/) | Workstation, AWS, RunPod, Brev, and secure-access runbooks |
 | [`benchmarks/`](benchmarks/) | Repeatable coding, tool-calling, and inference evaluations |
+| [`specs/`](specs/) | Project constitution, roadmap, and active feature contracts |
 
 See [Role agents across harnesses](docs/role-agents.md) for the delegation
 half of the workflow: roles, handoff packets, and what each harness actually
