@@ -5,10 +5,24 @@ open-source agent harness from DeepSeek AI. It is a Web UI and CLI agent, not a
 model, and it is the client layer of this repository's routing model rather than
 a model source.
 
-Status in this playground: **candidate, nothing measured.** Everything below is
-read from the upstream repository and documentation on 2026-08-23 at tag
-`dsh-v0.1.1-rc.2`. No endpoint, tool call, prompt size, or benchmark result on
-this hardware is claimed. Upstream states that the project is a developer
+Status in this playground: **measured once, on one host.** The
+[2026-08-27 run](../../benchmarks/2026-08-27-dsh-agent-client/result.md)
+reached a self-hosted llama-server endpoint with `dsh` **0.1.1-rc.2**, recorded
+its prompt size against the four clients already in the matrix, and closed a
+full tool-call loop.
+
+What that run establishes, and nothing more:
+
+| | |
+| --- | --- |
+| Prompt size | **10,475 tokens** — second of five, tied with OpenCode, ~2.1x Pi |
+| Requests per invocation | **two** — a 123-token preliminary call, then the turn |
+| Tool calls | **1 / 1**, the reference `calc.py` probe, loop closed |
+| Version under test | `0.1.1-rc.2`, installed with `npm install -g @deepseek-ai/dsh` |
+
+Everything *else* below is still read from the upstream repository and
+documentation on 2026-08-23 at tag `dsh-v0.1.1-rc.2`, and is unverified here —
+each such section says so. Upstream states that the project is a developer
 preview with compatibility-breaking changes expected, so re-read the sources
 before relying on any field name here.
 
@@ -25,7 +39,11 @@ That matters for two open questions in this repository:
 - The [replan note](../../specs/roadmap.md#replan-note-2026-08-21) found that
   agent prompt size, not agent quality, determined ranking on a CPU-only host.
   A harness whose prompt assembly is a replaceable plugin is a way to vary that
-  independently — if the prompt size can be measured first.
+  independently — if the prompt size can be measured first. **It now is: 10,475
+  tokens, second of five and roughly 2.1x Pi.** So the premise holds in the
+  direction that matters — the seam exists and prompt assembly *can* be swapped
+  — but the shipped default is not itself a saving. Varying it is work still to
+  be done, not a property `dsh` arrives with.
 - Phase 5 requires each compared agent to document protocol, authentication,
   model mapping, and tool limitations. `dsh` documents a custom
   OpenAI-compatible route with explicit request-shape switches, which is
@@ -41,6 +59,15 @@ Requires Node.js. The Web UI binds loopback by default:
 
 ```bash
 npx @deepseek-ai/dsh web
+```
+
+The 2026-08-27 run installed globally instead, so that the version under test is
+pinned in the record rather than resolved fresh per invocation — prefer this for
+anything that produces a benchmark number:
+
+```bash
+npm install -g @deepseek-ai/dsh   # 456 packages, 45 s; gave 0.1.1-rc.2
+dsh --version
 ```
 
 That starts the Web UI at `http://127.0.0.1:3080` and opens a browser; pass
@@ -82,6 +109,32 @@ llm-pi-ai:
       models:
         - id: gemma-4-e4b
 ```
+
+The 2026-08-27 run used exactly that shape with the endpoint's real alias and
+window substituted, and the endpoint answered on the first attempt:
+
+```yaml
+llm-pi-ai:
+  providers:
+    local:
+      apiKeyEnv: MODEL_API_KEY
+      api: openai-completions
+      baseURL: http://127.0.0.1:8080/v1
+      defaultContextWindow: 65536      # the server's --ctx-size
+      compat:
+        supportsDeveloperRole: false
+        maxTokensField: max_tokens
+      models:
+        - id: qwen3-coder-30b          # llama.cpp's --alias
+          contextWindow: 65536
+
+agent-default-model:
+  provider: local
+  model: qwen3-coder-30b
+```
+
+`MODEL_API_KEY` was set to `local`. llama-server ignores the value, but the
+client refuses an unset one.
 
 Credentials are write-only from the UI and stored in
 `$DSH_HOME/.credentials.yaml`; settings retain only a reference. `apiKeyEnv`
@@ -128,6 +181,14 @@ Upstream notes that a switch states a claim about the endpoint rather than
 checking it, which is the same caution this repository applies to the
 OpenAI-compatible label generally — see [technical boundaries][boundaries].
 
+**Neither switch has been shown to be necessary against llama-server.** The
+2026-08-27 run set both pre-emptively from this table and the endpoint answered
+first try, so no failing request was ever observed and no switch was ever
+isolated. The table above remains upstream's claim about symptoms, not this
+repository's finding. Establishing which — if either — llama-server actually
+needs means dropping them one at a time against a live endpoint, which no run
+here has done.
+
 The full switch list lives under `PiAiCompatProfile` in upstream's generated
 [config catalog][dsh-catalog].
 
@@ -156,6 +217,27 @@ documents the contract:
 Upstream's `BENCHMARK.md` points instead at the Python SDK and a `jsonrpc-agent`
 minimal variant, using separate workspaces and session IDs per task.
 
+### One invocation is two requests
+
+Measured on 2026-08-27, a single `dsh --profile headless` invocation reached the
+server **twice**, where Pi reached it once:
+
+| Server task | Prompt tokens | Time | What it is |
+| --- | --- | --- | --- |
+| 6 | 123 | 2.39 s | a short preliminary call |
+| 8 | 10,475 | 52.39 s | the agent turn |
+
+This does not contradict the contract above — the second call is a separate
+request, not an addition to the turn's prefix — but the contract does not
+mention it either. **Budget an invocation at 10,598 prompt tokens across two
+round trips, not the 10,475 headline.** On this host the extra call is noise
+against a 52 s prefill; on a fast endpoint, or anywhere per-request latency
+dominates, it is the larger of the two effects.
+
+What the 123-token call *is* was not identifiable from server-side logs alone.
+Upstream's `core/system-prompt` and session plugins are where to look, and
+whether it can be disabled is unknown.
+
 Note the cold-start caveat recorded for [OpenCode](../opencode/): on a slow
 endpoint each one-shot invocation re-pays the full system-prompt prefill, while
 an interactive session reuses the server's slot cache. Whichever path a
@@ -163,24 +245,41 @@ benchmark uses must be stated in its result record.
 
 ## Before this is usable as evidence
 
-Unmeasured here, in the order that decides whether it is worth continuing:
+The first two items on this list are now answered by the
+[2026-08-27 run](../../benchmarks/2026-08-27-dsh-agent-client/result.md); the
+rest are not.
 
-1. **System prompt size.** Phase 5 requires this measured and reported beside
-   any result. `dsh` assembles prompt sections and tool schemas in a
-   `core/system-prompt` plugin; whether it exposes a token count the way
-   `hermes prompt-size` does is unknown. Measure server-side prompt tokens if it
-   does not.
-2. **Tool-call behavior** against a small local model, using the same probe as
-   the other integrations here — a model that cannot emit the protocol wrapper
-   prints the call as assistant text.
-3. **Context-window override.** The 262,144-token route default above must be
-   corrected for any local server, and the failure mode when it is not has not
-   been observed here.
-4. **Preview churn.** The version is `0.1.1-rc`, and upstream warns in capitals
-   about breaking changes. Pin a version in any result record.
+1. ~~**System prompt size.**~~ **Measured: 10,475 tokens**, server-side, on the
+   trivial `ready` prompt — second of five clients and effectively tied with
+   OpenCode's 10,369. `dsh` was not found to expose a count of its own the way
+   `hermes prompt-size` does, so this is the server's number, read from
+   `llama-server`'s slot timings. One measurement, one host, one version.
+2. ~~**Tool-call behavior.**~~ **Loop closes, 1 / 1.** The reference `calc.py`
+   probe returned `a + b + 1`, which is reachable only by actually reading the
+   file, across two model turns. `dsh` joins Pi and OpenCode in closing a full
+   loop on this host.
+3. **Context-window override — still unmeasured.** The 2026-08-27 run set
+   `defaultContextWindow` correctly from the start, so the 262,144-token route
+   default was never exercised and its failure mode is still unobserved. This
+   is *less* tested than it looks: getting it right once is not evidence about
+   what getting it wrong does.
+4. **Preview churn — standing.** The version is `0.1.1-rc`, and upstream warns
+   in capitals about breaking changes. The measured figures above are pinned to
+   `0.1.1-rc.2` and should be re-measured on any bump rather than carried
+   forward.
 
-Do not treat this page as a working configuration until at least the first two
-have a recorded run.
+Also unmeasured, and worth adding to this list rather than assuming:
+
+5. **Whether either `compat` switch is required.** Both were set pre-emptively
+   and never isolated — see the request-shape section above.
+6. **Decode.** Every figure here is prefill-bound. No decode-rate comparison
+   between `dsh` and any other client has been attempted.
+7. **Quality.** Nothing measured here says whether `dsh` is a better or worse
+   agent than the other four. It says what its scaffolding costs and that its
+   loop closes.
+
+This page is now a **working configuration** — the block under "Self-hosted
+endpoint path" is the one that ran. It is not yet a characterization of `dsh`.
 
 ## Other surfaces
 
