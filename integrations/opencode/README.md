@@ -105,9 +105,9 @@ Verify with a grep anchored to the provider key:
 opencode models | grep '^llama\.cpp/'
 ```
 
-A bare `grep llama` matches hosted models such as
-`deepinfra/meta-llama/Llama-3.3-70B-Instruct-Turbo` and will look like success
-even when the local provider failed to load.
+Anchor it to the provider key. A bare `grep llama` is not a check: the model
+catalog carries around thirty Llama-family entries from hosted providers, so it
+matches whether or not the local provider loaded.
 
 Serve command and measured throughput are in the
 [i5-11400H + RTX 3060 runbook][rtx3060-runbook].
