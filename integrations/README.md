@@ -18,6 +18,7 @@ not currently available.
 | [Claude Code](claude-code/) | CLI agent | Anthropic Messages API or proxy |
 | [Codex](codex/) | CLI agent | Responses API, OSS provider, or proxy |
 | [Continue](continue/) | IDE extension | Native provider configuration |
+| [VS Code over ACP](vscode-acp/) | IDE extension | Agent-supplied; ACP carries no models |
 | [Aider](aider/) | CLI agent | Native provider or compatible API |
 | [Cursor](cursor/) | IDE | Product-dependent provider support |
 | [Google Antigravity](google-antigravity/) | IDE/platform | Product-dependent provider support |
@@ -25,6 +26,10 @@ not currently available.
 | [ForgeCode](forgecode/) | CLI agent | Product-specific configuration |
 | [Trae](trae/) | IDE | Product-managed models |
 | [Windsurf](windsurf/) | IDE | Product-managed models |
+
+Endpoint wiring is only half of a workflow. For roles, delegation, and the
+enforcement levers each harness offers, see
+[Role agents across harnesses](../docs/role-agents.md).
 
 Each integration should eventually record its supported protocol, direct or
 proxied connection path, example configuration, authentication variables, and
