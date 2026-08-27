@@ -115,6 +115,36 @@ whatever `--ctx-size` was passed.
 
 [gemma-serve]: ../../deployments/workstation/ryzen-5700u-cpu-only.md#variant-gemma-4-e4b-qat-with-mtp
 
+## Local llama-server (Qwen3-Coder 30B-A3B, GPU host)
+
+A third provider alongside `ollama` and `local` above — providers merge by key.
+Verified 2026-08-26 on Pi 0.84.3:
+
+```json
+"local": {
+  "baseUrl": "http://127.0.0.1:8080/v1",
+  "api": "openai-completions",
+  "apiKey": "none",
+  "models": [{ "id": "qwen3-coder-30b" }]
+}
+```
+
+```bash
+pi --list-models local
+pi -p --provider local --model qwen3-coder-30b --no-session "your prompt"
+```
+
+The `id` must equal the server's `--alias`. `--list-models` reports 128K of
+context for this model; that is Pi's catalog default, not a value read from the
+endpoint. Serve command and measured throughput are in the
+[i5-11400H + RTX 3060 runbook][rtx3060-runbook].
+
+Pi closed a full agent loop against this model — correct tool selected, file
+actually read, correct answer — recorded in the
+[2026-08-26 result][agents-2026-08-26].
+
+[rtx3060-runbook]: ../../deployments/workstation/i5-11400h-rtx3060.md
+
 ## Version note: the 1,370-token figure is stale
 
 The prompt sizes quoted on this page and in the Ryzen records were measured on
