@@ -3,7 +3,7 @@ name: implementer
 description: Implements one delegated packet against named paths.
 model: haiku
 maxTurns: 12
-disallowedTools: WebFetch, WebSearch
+disallowedTools: WebFetch, WebSearch, Task
 permissionMode: acceptEdits
 ---
 
