@@ -66,6 +66,34 @@ Kilo ships no `local` provider by default. Add one alongside the existing
 Identical to the [OpenCode block](../opencode/README.md), as the fork accepts
 the same schema. Select it with `kilo run --model local/gemma-4-e4b`.
 
+## Local llama-server (Qwen3-Coder 30B-A3B, GPU host)
+
+Identical to the [OpenCode block](../opencode/README.md), under the same
+top-level `provider` key in `~/.config/kilo/kilo.jsonc`. Verified 2026-08-26 on
+Kilo 7.3.46:
+
+```json
+"llama.cpp": {
+  "npm": "@ai-sdk/openai-compatible",
+  "name": "llama-server (local)",
+  "options": { "baseURL": "http://127.0.0.1:8080/v1", "apiKey": "dummy" },
+  "models": {
+    "qwen3-coder-30b": {
+      "name": "Qwen3-Coder 30B-A3B (local)",
+      "limit": { "context": 65536, "output": 8192 }
+    }
+  }
+}
+```
+
+Select with `kilo run --model llama.cpp/qwen3-coder-30b`.
+
+Kilo ships the second-largest system prompt of the four clients here —
+**15,588 tokens**, 80 s of prefill on a local GPU endpoint. See the
+[2026-08-26 record][agents-2026-08-26].
+
+[agents-2026-08-26]: ../../benchmarks/2026-08-26-agent-client-prompt-sizes/result.md
+
 ## Verify and run
 
 ```bash

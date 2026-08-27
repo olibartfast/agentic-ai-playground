@@ -80,6 +80,40 @@ rejected. See the [Gemma 4 E4B serve command][gemma-serve].
 
 [gemma-serve]: ../../deployments/workstation/ryzen-5700u-cpu-only.md#variant-gemma-4-e4b-qat-with-mtp
 
+## Local llama-server (Qwen3-Coder 30B-A3B, GPU host)
+
+The same schema against a GPU host serving a 30B MoE with expert tensors
+offloaded to system RAM. Verified 2026-08-26 on OpenCode 1.18.22:
+
+```json
+"llama.cpp": {
+  "npm": "@ai-sdk/openai-compatible",
+  "name": "llama-server (local)",
+  "options": { "baseURL": "http://127.0.0.1:8080/v1", "apiKey": "dummy" },
+  "models": {
+    "qwen3-coder-30b": {
+      "name": "Qwen3-Coder 30B-A3B (local)",
+      "limit": { "context": 65536, "output": 8192 }
+    }
+  }
+}
+```
+
+Verify with a grep anchored to the provider key:
+
+```bash
+opencode models | grep '^llama\.cpp/'
+```
+
+A bare `grep llama` matches hosted models such as
+`deepinfra/meta-llama/Llama-3.3-70B-Instruct-Turbo` and will look like success
+even when the local provider failed to load.
+
+Serve command and measured throughput are in the
+[i5-11400H + RTX 3060 runbook][rtx3060-runbook].
+
+[rtx3060-runbook]: ../../deployments/workstation/i5-11400h-rtx3060.md
+
 ### Prompt size is a wall-clock cost on a slow endpoint
 
 OpenCode ships a **7,876-token** system prompt. Against a CPU-only endpoint
