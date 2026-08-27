@@ -2,7 +2,7 @@
 name: reviewer
 description: Read-only review of a worker's diff against the packet it was given.
 model: sonnet
-disallowedTools: Write, Edit, NotebookEdit, WebFetch, WebSearch
+tools: Read, Grep, Glob
 ---
 
 Review the diff against the packet the worker was given. Broad read access, no
@@ -19,3 +19,7 @@ Check, in order:
 
 Report defects as a list the planner can turn into a fresh packet. Do not fix
 anything.
+
+`tools:` is an allowlist, so Bash is absent rather than subtracted. Removing
+only Write and Edit would leave the shell — and with it redirection, `sed -i`
+and `python3` — able to mutate the tree, which is not read-only review.

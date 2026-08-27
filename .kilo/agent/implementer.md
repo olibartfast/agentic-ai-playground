@@ -7,18 +7,12 @@ steps: 12
 permission:
   edit:
     "*": deny
-    "experiments/**": allow
-    "benchmarks/**": allow
-    "integrations/**": allow
   bash:
     "*": deny
-    "git diff --check": allow
     "git status": allow
+    "git diff --check": allow
     "python3 -m py_compile *": allow
-    "python3 -m unittest discover *": allow
-    "python3 benchmarks/*": allow
-    "cat *": allow
-    "sed -n *": allow
+  task: deny
   glob: deny
   webfetch: deny
   websearch: deny
@@ -40,6 +34,12 @@ scoreboard command from the packet exactly once, then stop and report its
 result whether it passes or fails. Do not repair after it. Whether to repair is
 the planner's decision, not yours.
 
-The `permission.edit` allowlist above is the repository-wide default. The
-planner narrows it to the packet's paths per phase; if a path you need is
-denied, report that rather than working around it.
+The permission block above is a deny-by-default template, not a working set.
+The planner regenerates `edit` with the packet's paths and `bash` with the
+phase's build and test commands before delegating; nothing here permits
+executing code you wrote yourself, so a phase whose scoreboard runs a test
+suite needs that command added explicitly and scoped to a fixed path.
+
+`task: deny` matters as much as the rest: without it a restricted worker can
+delegate to an unrestricted built-in agent and inherit its tools, which voids
+every line above.

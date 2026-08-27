@@ -8,12 +8,12 @@ permission:
     "*": deny
   bash:
     "*": deny
-    "git diff*": allow
-    "git log*": allow
     "git status": allow
+    "git diff": allow
+    "git diff --stat": allow
     "git diff --check": allow
-    "cat *": allow
-    "sed -n *": allow
+    "git log --oneline -20": allow
+  task: deny
   webfetch: deny
   websearch: deny
 ---
@@ -32,3 +32,7 @@ Check, in order:
 
 Report defects as a list the planner can turn into a fresh packet. Do not
 fix anything.
+
+Write tools, delegation and every shell command that could mutate the tree are
+denied above rather than discouraged in this brief. Read files with your read
+tool; the shell allowlist carries only commands that cannot write.
