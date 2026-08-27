@@ -29,6 +29,10 @@ model is physically local.
 | [`benchmarks/`](benchmarks/) | Repeatable coding, tool-calling, and inference evaluations |
 | [`experiments/`](experiments/) | Agent-framework examples and runnable prototypes |
 
+See [Role agents across harnesses](docs/role-agents.md) for the delegation
+half of the workflow: roles, handoff packets, and what each harness actually
+enforces.
+
 See [Architecture and routing scenarios](docs/architecture.md) for managed,
 gateway, hybrid, and fully self-hosted examples.
 

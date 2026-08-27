@@ -141,3 +141,13 @@ See the [Qwen2.5-Coder-7B CPU result][qwen-result] for the root-cause isolation
 across five parsers.
 
 [qwen-result]: ../../benchmarks/2026-08-21-qwen2.5-coder-7b-cpu/result.md
+
+## Role agents and delegation
+
+This page covers the endpoint: how Kilo Code reaches a model. For the other half
+of the [cloud-to-local workflow][blog] — splitting work into architect,
+planner, implementer and reviewer roles, writing handoff packets, and which
+guardrails Kilo Code enforces rather than merely requests — see
+[Role agents across harnesses](../../docs/role-agents.md).
+
+[blog]: https://olibartfast.ninja/blog/ai-coding-workflows-cloud-to-local.html
