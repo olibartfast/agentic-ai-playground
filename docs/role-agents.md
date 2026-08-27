@@ -154,8 +154,13 @@ changes — see [`integrations/kilocode/`](../integrations/kilocode/):
 
 - Agent files: `.kilo/agent/*.md`, **not** `.opencode/agent/`. Verified: with
   only `.opencode/agent/` present, `kilo agent list` shows its built-ins and
-  none of the roles.
+  none of the roles. This repository's set is in
+  [`.kilo/agent/`](../.kilo/agent/).
 - User config: `~/.config/kilo/kilo.jsonc`.
+- Model identifiers differ from OpenCode's. Kilo lists no OpenRouter or LAN
+  llama.cpp provider on this machine, so the roles use `kilo/~anthropic/*`,
+  `kilo/~deepseek/*`, and `local/gemma-4-e4b`. Read the catalogue rather than
+  copying OpenCode's strings.
 
 ```bash
 kilo agent list
@@ -164,7 +169,8 @@ kilo agent list
 ## Claude Code
 
 Files live in `.claude/agents/*.md`. Same shape as OpenCode, different lever
-names, and the model is a tier inside one vendor family:
+names, and the model is a tier inside one vendor family. This repository's set
+is in [`.claude/agents/`](../.claude/agents/):
 
 ```markdown
 <!-- .claude/agents/implementer.md -->
@@ -193,6 +199,8 @@ in the packet and has to be checked in review. Define the reviewer with
 Codex splits the same information between the planner's `config.toml` and one
 TOML file per delegated agent. Support for `.codex/agents` and
 `developer_instructions` is present in the shipped binary of Codex 0.149.1.
+This repository's set is in [`.codex/agents/`](../.codex/agents/); the planner
+tier below belongs in your own `config.toml` and is not committed here.
 
 ```toml
 # ~/.codex/config.toml — the planner
@@ -293,9 +301,9 @@ what was read from a shipped binary or the article:
 | Harness | Status |
 | --- | --- |
 | OpenCode 1.18.23 | Verified — five roles resolve via `opencode debug agent`, including `steps`, per-role model, and `glob`/`edit`/`write` disabled where declared |
-| Kilo 7.4.20 | Partly verified — `.kilo/agent` is the directory it reads; role files not exercised |
-| Codex 0.149.1 | Partly verified — `.codex/agents` and `developer_instructions` present in the binary; no run performed |
-| Claude Code 2.1.247 | Unverified here — file shape from the article and vendor documentation |
+| Kilo 7.4.20 | Verified — the same five roles load from `.kilo/agent/`; `kilo debug agent` confirms the model, `steps: 12`, and `edit`/`write` disabled on the reviewer |
+| Codex 0.149.1 | Partly verified — `.codex/agents` and `developer_instructions` present in the binary, role files parse as valid TOML; no run performed |
+| Claude Code 2.1.247 | Partly verified — `model`, `maxTurns`, `disallowedTools` and `permissionMode` all appear in the shipped binary; role files written but no run performed |
 | Pi 0.84.2, Hermes 0.20.0 | Verified absent — no file-backed role system found in either CLI |
 
 One caveat that outranks all of the above: over ACP, selecting a role does
