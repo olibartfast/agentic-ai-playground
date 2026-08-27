@@ -362,3 +362,13 @@ This creates codebase-map.html with collapsible directories, file sizes, and col
 - https://code.claude.com/docs/en/cli-reference
 - https://code.claude.com/docs/en/memory
 - https://code.claude.com/docs/en/slash-commands
+
+## Role agents and delegation
+
+This page covers the endpoint: how Claude Code reaches a model. For the other half
+of the [cloud-to-local workflow][blog] — splitting work into architect,
+planner, implementer and reviewer roles, writing handoff packets, and which
+guardrails Claude Code enforces rather than merely requests — see
+[Role agents across harnesses](../../docs/role-agents.md).
+
+[blog]: https://olibartfast.ninja/blog/ai-coding-workflows-cloud-to-local.html

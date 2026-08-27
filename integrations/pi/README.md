@@ -197,3 +197,13 @@ host, and the reason is prompt size rather than agent quality.
 [gemma-result]: ../../benchmarks/2026-08-21-gemma-4-e4b-cpu/result.md
 
 [qwen-result]: ../../benchmarks/2026-08-21-qwen2.5-coder-7b-cpu/result.md
+
+## Role agents and delegation
+
+This page covers the endpoint: how Pi reaches a model. For the other half
+of the [cloud-to-local workflow][blog] — splitting work into architect,
+planner, implementer and reviewer roles, writing handoff packets, and which
+guardrails Pi enforces rather than merely requests — see
+[Role agents across harnesses](../../docs/role-agents.md).
+
+[blog]: https://olibartfast.ninja/blog/ai-coding-workflows-cloud-to-local.html

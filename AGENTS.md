@@ -5,7 +5,8 @@
 This is a documentation-first playground that keeps experiment concerns
 separate. Put model requirements in `models/`, hosted and self-operated API
 backends in `serving/`, agent/IDE configuration in `integrations/`, and compute
-runbooks in `deployments/`. Reproducible tasks and result records belong in
+runbooks in `deployments/`. `experiments/` is absent from the tree until a
+prototype exists; recreate it when adding one. Reproducible tasks and result records belong in
 `benchmarks/`; runnable framework prototypes belong in `experiments/`.
 
 `docs/architecture.md` defines the routing model. Project intent and active

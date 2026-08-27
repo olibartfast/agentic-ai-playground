@@ -875,3 +875,12 @@ Do not default to `danger-full-access` or `approval_policy = "never"` during nor
 * [https://github.com/openai/codex](https://github.com/openai/codex)
 * [https://agents.md](https://agents.md)
 
+## Role agents and delegation
+
+This page covers the endpoint: how Codex reaches a model. For the other half
+of the [cloud-to-local workflow][blog] — splitting work into architect,
+planner, implementer and reviewer roles, writing handoff packets, and which
+guardrails Codex enforces rather than merely requests — see
+[Role agents across harnesses](../../docs/role-agents.md).
+
+[blog]: https://olibartfast.ninja/blog/ai-coding-workflows-cloud-to-local.html

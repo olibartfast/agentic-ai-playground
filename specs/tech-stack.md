@@ -15,7 +15,7 @@ The repository is documentation-first and separates these stable concerns:
 | `integrations/` | Coding-agent, IDE, and extension configuration |
 | `deployments/` | Workstation and rented-compute runbooks |
 | `benchmarks/` | Versioned task contracts, fixtures, validation, and results |
-| `experiments/` | Runnable agent-framework prototypes |
+| `experiments/` | Runnable agent-framework prototypes; absent from the tree until one exists, since git does not track empty directories |
 | `specs/` | Project constitution, roadmap, and active feature contracts |
 
 Do not collapse model source, model identity, runtime, and compute placement
