@@ -230,9 +230,11 @@ default-effort one tells you about the setting rather than the model.
 Because there is no per-agent step cap, the parent workflow has to terminate the
 child: one phase, one scoreboard run, and an explicit check that it returned.
 
-`.codex/agents/` holds only the delegated agents. The article places the
-planner in `~/.codex/config.toml`, shown above — user-level configuration, so
-it is not committed here.
+All four roles are committed as agent files. The article shows the planner tier
+in `~/.codex/config.toml` instead, which is the same choice expressed as
+user-level configuration; a file under `.codex/agents/` keeps it reviewable
+with the rest of the set, and `config.toml` still sets the default for a
+session started without a role.
 
 Reaching a local endpoint is a provider selection — `model_provider`, per
 [`integrations/codex/open-models.md`](../integrations/codex/open-models.md) —
