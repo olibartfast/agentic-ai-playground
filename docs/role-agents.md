@@ -199,8 +199,7 @@ in the packet and has to be checked in review. Define the reviewer with
 Codex splits the same information between the planner's `config.toml` and one
 TOML file per delegated agent. Support for `.codex/agents` and
 `developer_instructions` is present in the shipped binary of Codex 0.149.1.
-This repository's set is in [`.codex/agents/`](../.codex/agents/); the planner
-tier below belongs in your own `config.toml` and is not committed here.
+This repository's set is in [`.codex/agents/`](../.codex/agents/).
 
 ```toml
 # ~/.codex/config.toml — the planner
@@ -230,6 +229,26 @@ default-effort one tells you about the setting rather than the model.
 
 Because there is no per-agent step cap, the parent workflow has to terminate the
 child: one phase, one scoreboard run, and an explicit check that it returned.
+
+`.codex/agents/` holds only the delegated agents. The article places the
+planner in `~/.codex/config.toml`, shown above — user-level configuration, so
+it is not committed here.
+
+Reaching a local endpoint is a provider selection — `model_provider`, per
+[`integrations/codex/open-models.md`](../integrations/codex/open-models.md) —
+and whether that key is honoured inside an agent file rather than in
+`config.toml` is unverified. A committed `implementer-local.toml` that silently
+fell back to the default provider would send the work to a hosted model while
+claiming to run locally, so select the local provider per run instead:
+
+```bash
+codex --model <local-model-id> -c model_provider=llama_cpp
+```
+
+Claude Code has no local variant for a different reason: its model choice stays
+inside one vendor family. Only the two open harnesses treat the provider as
+part of the model identifier, which is what makes the cheap-worker move and the
+go-local move the same edit.
 
 ## Pi and Hermes
 
