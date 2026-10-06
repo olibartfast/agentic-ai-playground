@@ -16,6 +16,7 @@ through their vendor or an authorized gateway.
 | [Nemotron 3.5 Lightning](nemotron-3.5-lightning/) | To be determined | Awaiting verification |
 | [DeepSeek V4 Flash](deepseek-v4-flash/) | Multi-GPU or CPU offload | Candidate |
 | [Inkling](inkling/) | High-end multi-GPU | Reference |
+| [Decision models](decision-models/) | Small checkpoints on the 6 GB host, `/v1/systemone` | Candidate |
 
 Every experiment record should include checkpoint, quantization, runtime
 version, context size, GPU topology, command-line flags, and observed memory.

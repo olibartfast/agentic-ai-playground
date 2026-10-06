@@ -13,3 +13,9 @@ Record results under a dated experiment directory using
 [`result-template.md`](result-template.md). Do not compare runs unless the
 repository commit, prompt, tool permissions, and pass criteria match.
 
+## Decision models
+
+[`decision-v1/`](decision-v1/) is a separate, smaller benchmark: it scores a
+decision model's answers to coding-agent gating, tool-selection, and routing
+questions over the `/v1/systemone` API, and does not run an agent.
+

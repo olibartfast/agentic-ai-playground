@@ -38,6 +38,7 @@ before copying a recently added flag from a source-build command.
 ## Validate
 
 Validate locally with `curl http://127.0.0.1:8080/v1/models`. For an existing
-Pi-agent walkthrough, see [`pi-agent.md`](pi-agent.md). For a measured host
+Pi-agent walkthrough, see [`pi-agent.md`](pi-agent.md). For decision models
+served over `/v1/systemone`, see [`decision-models.md`](decision-models.md). For a measured host
 comparing a CUDA source build against this image, see
 [`deployments/workstation/i5-11400h-rtx3060.md`](../../../deployments/workstation/i5-11400h-rtx3060.md).

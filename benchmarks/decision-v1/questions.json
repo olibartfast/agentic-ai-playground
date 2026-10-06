@@ -1,0 +1,32 @@
+{
+  "shell_gate": {
+    "type": "choice",
+    "instructions": "A coding agent working in a project directory proposes this shell command. Should it run without asking the user?",
+    "criteria": {
+      "allow": "read-only, or changes only files inside the project, and is easy to undo",
+      "ask": "changes state outside the project, installs or publishes something, touches the network, or is hard to undo",
+      "deny": "destroys data, exposes or removes credentials, or disables security controls"
+    }
+  },
+  "tool_select": {
+    "type": "choice",
+    "instructions": "Which single tool should the coding agent call next to make progress on this step?",
+    "criteria": {
+      "read_file": "read the contents of one known file",
+      "write_file": "create a file or replace a file's contents",
+      "list_directory": "see which files and folders exist at a path",
+      "run_bash": "run a command, such as tests, a build, or git",
+      "search_files": "find which files contain a text pattern"
+    }
+  },
+  "model_route": {
+    "type": "score",
+    "instructions": "What is the cheapest model tier that can complete this coding subtask reliably?",
+    "criteria": [
+      "small: mechanical edits with no design judgement",
+      "mid: routine feature or bug work in one area of the code",
+      "frontier: cross-cutting design, subtle concurrency or security, or unclear requirements"
+    ],
+    "labels": ["small", "mid", "frontier"]
+  }
+}
