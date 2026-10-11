@@ -1,0 +1,31 @@
+{
+  "cv_alert": {
+    "type": "choice",
+    "instructions": "A construction-site camera runs object detection. Given this frame's detections and zone rules, what should the monitoring system do?",
+    "criteria": {
+      "none": "normal activity; nothing breaks a site rule",
+      "notify": "a minor or uncertain rule issue that a supervisor should see later",
+      "escalate": "a person is in immediate danger or a hard safety rule is clearly broken; alert now"
+    }
+  },
+  "cv_second_pass": {
+    "type": "choice",
+    "instructions": "A fast detector produced this result. Can it be accepted as is, or should a slower, more accurate model review the frame?",
+    "criteria": {
+      "accept": "detections are confident, consistent with each other, and plausible for the scene",
+      "review": "low or borderline confidence on an object that matters, contradictory or implausible detections, or a degraded frame"
+    }
+  },
+  "cv_task_route": {
+    "type": "choice",
+    "instructions": "An operator typed this request about an image or video. Which single vision task should the platform run?",
+    "criteria": {
+      "object_detection": "find and box objects from a fixed list of known classes, or count them",
+      "instance_segmentation": "pixel-accurate outline or mask of each object, or its area",
+      "pose_estimation": "body keypoints, posture, or limb positions of people",
+      "depth_estimation": "distance from the camera or relative depth of the scene",
+      "open_vocab_detection": "find objects described by free text that are not in a fixed class list",
+      "image_understanding": "a description, explanation, or answer to an open question about the image"
+    }
+  }
+}
