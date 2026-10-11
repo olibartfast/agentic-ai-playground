@@ -255,6 +255,29 @@ Entry conditions:
 - Unsafe tutorial shortcuts, stale dependencies, and secret handling are
   addressed in a dedicated feature contract.
 
+## Side track — Decision models for agent harnesses
+
+Status: **In progress**
+
+Outcome: measure whether a small self-hosted decision model, served over the
+System One `/v1/systemone` API by llama.cpp, can make a coding agent's
+gating, tool-selection, and routing decisions accurately enough to automate,
+and at which confidence cutoff.
+
+Why a side track: it does not change the coding-agent suite's phase order and
+competes for none of its evidence. It reuses the Phase 4 host, and its result
+decides whether a later integration packet wires a decision model into an
+agent's permission hooks.
+
+Feature packet: [`2026-10-06-decision-models/`](2026-10-06-decision-models/)
+
+Exit evidence:
+
+- `decision-v1` results for at least Julia-1, Laya, and Kev-4B on the RTX 3060
+  host, each with a cutoff table and unsafe-allow count.
+- A named confidence cutoff per model, or a recorded finding that no cutoff
+  gives acceptable coverage.
+
 ## Replanning Triggers
 
 Revisit phase order when validation reveals that:

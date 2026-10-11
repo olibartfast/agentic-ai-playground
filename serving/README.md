@@ -7,7 +7,7 @@ who operates the inference infrastructure, not by where the agent runs.
 
 | Backend | Best fit |
 | --- | --- |
-| [llama.cpp / llama-server](self-hosted/llama-cpp/) | Quantized single-GPU experiments |
+| [llama.cpp / llama-server](self-hosted/llama-cpp/) | Quantized single-GPU experiments; [decision models](self-hosted/llama-cpp/decision-models.md) over `/v1/systemone` |
 | [Ollama](self-hosted/ollama/) | Simple model management and serving |
 | [LM Studio](self-hosted/lm-studio/) | Desktop-oriented model management and serving |
 | [vLLM](self-hosted/vllm/) | High-throughput GPU serving |
