@@ -22,6 +22,7 @@ model is physically local.
 
 | Area | Purpose |
 | --- | --- |
+| [`courses/stanford-cs146s/`](courses/stanford-cs146s/) | CS146S learning progress and links to exercises, reusable skills, and practical applications |
 | [`models/`](models/) | Model-specific requirements and experiment profiles |
 | [`serving/`](serving/) | Hosted model sources and self-hosted inference runtimes |
 | [`integrations/`](integrations/) | Coding agents, IDEs, extensions, and serving-layer configurations |
