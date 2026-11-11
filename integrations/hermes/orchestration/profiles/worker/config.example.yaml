@@ -1,0 +1,8 @@
+model:
+  default: deepseek-flash
+  provider: deepseek
+agent:
+  reasoning_effort: low
+fallback_providers:
+  - provider: meta-ai
+    model: muse-spark-1.3-contributor

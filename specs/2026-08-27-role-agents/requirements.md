@@ -1,6 +1,6 @@
 # Role Agents Across Harnesses — Requirements
 
-Status: implemented, 2026-08-27.
+Status: implemented, 2026-08-27. Current role architecture is superseded by [the 2026-11 orchestration pyramid](../2026-11-11-orchestration-pyramid/requirements.md); the scope and verification below record the original implementation.
 
 ## Problem
 

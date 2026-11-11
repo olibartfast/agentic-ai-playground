@@ -1,0 +1,34 @@
+# Merge into ~/.hermes/config.yaml after installing the official advanced-delegation plugin.
+# This example contains no credentials. Confirm Muse Ember is available to your account first.
+model:
+  default: muse-spark-1.3-contributor
+  provider: meta-ai
+fallback_providers:
+  - provider: meta-ai
+    model: muse-spark-1.3-contributor
+  - provider: deepseek
+    model: deepseek-flash
+delegation:
+  backend: profile_routes
+  max_spawn_depth: 2
+  orchestrator_enabled: true
+  fallback_providers:
+    - provider: meta-ai
+      model: muse-spark-1.3-contributor
+    - provider: deepseek
+      model: deepseek-flash
+  backends:
+    profile_routes:
+      profiles:
+        - name: orchestrator
+          description: Coordinates complex tasks and delegates to specialists.
+        - name: architect
+          description: Resolves difficult design and migration questions.
+        - name: planner
+          description: Produces bounded tasks, acceptance criteria, and checks.
+        - name: worker
+          description: Implements assigned task packets and runs focused checks.
+        - name: reviewer
+          description: Independently reviews changes and reports findings.
+        - name: explorer
+          description: Read-only research with concise evidence.
