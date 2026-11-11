@@ -1,0 +1,8 @@
+model:
+  default: muse-ember-1.0
+  provider: meta-ai
+agent:
+  reasoning_effort: low
+fallback_providers:
+  - provider: deepseek
+    model: deepseek-flash
