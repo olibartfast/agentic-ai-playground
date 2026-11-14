@@ -91,6 +91,10 @@ orchestrator itself has no edit permission and cannot change worker policy).
 delegation. Verify installed model identifiers and permissions with
 `opencode agent list` and `opencode debug agent <name>` before use.
 
+Free Console models are an optional alternative, not the committed default.
+See [free-models.md](../integrations/opencode/free-models.md) for a verified
+mapping and its privacy caveats.
+
 ## Claude Code
 
 Committed profiles live in [`.claude/agents/`](../.claude/agents/). The selected

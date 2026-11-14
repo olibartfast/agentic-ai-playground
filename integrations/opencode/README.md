@@ -182,6 +182,14 @@ parsers.
 
 [qwen-result]: ../../benchmarks/2026-08-21-qwen2.5-coder-7b-cpu/result.md
 
+## Optional free Console models
+
+OpenCode Console provides a rotating free tier. The committed role files keep
+their existing models; [free-models.md](free-models.md) documents an optional
+verified mapping, its privacy classes and regional restrictions, and the probe
+procedure. The reusable skill lives in
+[skills/select-opencode-free-models](skills/select-opencode-free-models/).
+
 ## Role agents and delegation
 
 This page covers the endpoint: how OpenCode reaches a model. For the other half
