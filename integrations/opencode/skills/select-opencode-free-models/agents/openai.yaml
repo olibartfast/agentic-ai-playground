@@ -1,0 +1,4 @@
+interface:
+  display_name: "Select OpenCode Free Models"
+  short_description: "Verify free-model privacy, region, and liveness"
+  default_prompt: "Use $select-opencode-free-models to verify free OpenCode models and choose role-safe models and fallbacks before wiring an agent pyramid."
