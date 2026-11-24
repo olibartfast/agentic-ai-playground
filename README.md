@@ -28,6 +28,7 @@ model is physically local.
 | [`integrations/`](integrations/) | Coding agents, IDEs, extensions, and serving-layer configurations |
 | [`deployments/`](deployments/) | Workstation, AWS, RunPod, Brev, and secure-access runbooks |
 | [`benchmarks/`](benchmarks/) | Repeatable coding, tool-calling, and inference evaluations |
+| [`experiments/ghostgrid/`](experiments/ghostgrid/) | Ghostgrid prototype for routing text, vision, and code workflows across model providers |
 | [`specs/`](specs/) | Project constitution, roadmap, and active feature contracts |
 
 See [Role agents across harnesses](docs/role-agents.md) for the delegation
