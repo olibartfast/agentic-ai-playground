@@ -1,0 +1,103 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ghostgrid"
+dynamic = ["version"]
+description = "Multi-provider LLM and VLM inference with sequential, parallel, conditional, iterative, MoA, and ReAct workflows"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+keywords = ["llm", "vlm", "vision", "multimodal", "agent", "workflow", "openai", "anthropic"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "requests>=2.28.0",
+    "Pillow>=9.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "ruff>=0.1.0",
+    "pylint>=3.0.0",
+    "mypy>=1.0.0",
+]
+all = [
+    "ghostgrid[dev]",
+]
+
+[project.scripts]
+ghostgrid = "ghostgrid.cli:main"
+
+[project.urls]
+Repository = "https://github.com/olibartfast/ghostgrid"
+
+[tool.hatch.version]
+path = "VERSION"
+pattern = "(?P<version>.+)"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/VERSION",
+]
+exclude = [
+    "/tests",
+    "/examples",
+    "/docs",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ghostgrid"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+packages = ["ghostgrid"]
+mypy_path = "src"
+
+[tool.pylint.main]
+py-version = "3.10"
+source-roots = ["src"]
+
+[tool.pylint.messages_control]
+disable = [
+    "C0114",  # missing-module-docstring
+    "C0115",  # missing-class-docstring
+    "C0116",  # missing-function-docstring
+    "R0903",  # too-few-public-methods
+    "W0212",  # protected-access
+]
+
+[tool.pylint.format]
+max-line-length = 120

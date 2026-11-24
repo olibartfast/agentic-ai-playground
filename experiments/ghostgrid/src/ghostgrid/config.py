@@ -1,0 +1,135 @@
+"""
+Configuration constants and environment handling.
+"""
+
+import os
+
+# ---------------------------------------------------------------------------
+# Provider configuration
+# ---------------------------------------------------------------------------
+
+PROVIDER_ENV_MAP: dict[str, str] = {
+    "openai": "OPENAI_API_KEY",
+    "anthropic": "ANTHROPIC_API_KEY",
+    "google": "GOOGLE_API_KEY",
+    "together": "TOGETHER_API_KEY",
+    "azure": "AZURE_OPENAI_API_KEY",
+    "groq": "GROQ_API_KEY",
+    "mistral": "MISTRAL_API_KEY",
+    "cerebras": "CEREBRAS_API_KEY",
+    "openrouter": "OPENROUTER_API_KEY",
+    "zai": "ZAI_API_KEY",
+}
+
+PROVIDER_DEFAULTS: dict[str, str] = {
+    "openai": "https://api.openai.com/v1/chat/completions",
+    "anthropic": "https://api.anthropic.com/v1/messages",
+    "google": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    "together": "https://api.together.xyz/v1/chat/completions",
+    "groq": "https://api.groq.com/openai/v1/chat/completions",
+    "mistral": "https://api.mistral.ai/v1/chat/completions",
+    "cerebras": "https://api.cerebras.ai/v1/chat/completions",
+    "openrouter": "https://openrouter.ai/api/v1/chat/completions",
+    "zai": "https://api.z.ai/api/paas/v4/chat/completions",
+}
+
+
+DEFAULT_ENDPOINT = "https://api.openai.com/v1/chat/completions"
+
+WORKFLOW_CHOICES = ["sequential", "parallel", "conditional", "iterative", "moa", "react"]
+
+# Tools available in code-agent mode
+CODE_AGENT_TOOLS = ["read_file", "write_file", "list_directory", "run_bash", "search_files"]
+
+# System One decision-model endpoint (llama-server, laya-serve, or hosted Jev)
+SYSTEMONE_URL_ENV = "SYSTEMONE_URL"
+SYSTEMONE_API_KEY_ENV = "SYSTEMONE_API_KEY"
+DEFAULT_SYSTEMONE_URL = "http://127.0.0.1:8080"
+
+# Environment variable names that contain credentials — redacted from subprocess environments
+CREDENTIAL_ENV_VARS: set[str] = set(PROVIDER_ENV_MAP.values()) | {SYSTEMONE_API_KEY_ENV}
+
+# ---------------------------------------------------------------------------
+# ReAct system prompt template
+# ---------------------------------------------------------------------------
+
+REACT_SYSTEM_PROMPT = """You are a vision analysis agent. Solve the task step by step using the available tools.
+
+Available tools:
+{tool_descriptions}
+
+Use this EXACT format for every step:
+Thought: <your reasoning about what to do next>
+Action: <tool_name>
+Action Input: <JSON object with the tool's parameters>
+Observation: <result will be filled in by the system>
+
+Once you have enough information, end with:
+Thought: I now have enough information to answer.
+Final Answer: <your complete answer>
+
+Rules:
+- Only call one tool per step.
+- Always wait for the Observation before continuing.
+- Never fabricate an Observation — the system provides it.
+- Stop as soon as you can write Final Answer."""
+
+# ---------------------------------------------------------------------------
+# Code-agent system prompt template (filesystem + shell tools)
+# ---------------------------------------------------------------------------
+
+# pylint: disable-next=line-too-long
+CODE_AGENT_SYSTEM_PROMPT = """You are a coding agent with access to the local filesystem. Solve the task step by step using the available tools.
+
+Available tools:
+{tool_descriptions}
+
+Use this EXACT format for every step:
+Thought: <your reasoning about what to do next>
+Action: <tool_name>
+Action Input: <JSON object with the tool's parameters>
+Observation: <result will be filled in by the system>
+
+Once you have completed the task, end with:
+Thought: I have completed the task.
+Final Answer: <summary of what was done or the answer to the question>
+
+Rules:
+- Only call one tool per step.
+- Always wait for the Observation before continuing.
+- Never fabricate an Observation — the system provides it.
+- Read files before editing them to understand existing content.
+- Use search_files to locate relevant code before making changes.
+- Stop as soon as you can write Final Answer."""
+
+
+# ---------------------------------------------------------------------------
+# Helper functions
+# ---------------------------------------------------------------------------
+
+
+def get_api_key(provider: str) -> str:
+    """Get API key from environment for a provider."""
+    env_var = PROVIDER_ENV_MAP.get(provider.lower(), "OPENAI_API_KEY")
+    api_key = os.getenv(env_var)
+    if api_key is None:
+        raise RuntimeError(f"{env_var} not set (required for provider '{provider}')")
+    return api_key
+
+
+def get_default_endpoint(provider: str) -> str:
+    """Get default endpoint for a provider."""
+    return PROVIDER_DEFAULTS.get(provider.lower(), DEFAULT_ENDPOINT)
+
+
+def resolve_endpoint(provider: str, endpoint: str | None = None) -> str:
+    """Resolve an endpoint for a provider, requiring explicit URLs when needed."""
+    if endpoint:
+        return endpoint
+
+    provider_name = provider.lower()
+    if provider_name in PROVIDER_DEFAULTS:
+        return PROVIDER_DEFAULTS[provider_name]
+    if provider_name in PROVIDER_ENV_MAP:
+        raise RuntimeError(f"Provider '{provider}' requires an explicit --endpoint value.")
+    return DEFAULT_ENDPOINT
